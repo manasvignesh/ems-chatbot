@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 
 interface ErrorSpamProps {
+  isActive: boolean;
   durationSeconds?: number;
   onComplete: () => void;
 }
@@ -20,18 +21,18 @@ interface SpamTag {
 const ERROR_MESSAGES = [
   "OUT OF SCOPE",
   "INVALID QUERY",
-  "EMS ONLY",
+  "EQUINOX ONLY",
   "QUERY REJECTED",
   "CONTEXT VIOLATION",
-  "EVENT QUESTIONS ONLY",
+  "EQUINOX QUESTIONS ONLY",
   "ERROR 403",
   "WRONG CONTEXT",
   "REQUEST BLOCKED",
   "INVALID CONTEXT",
-  "EMS ACCESS FILTER",
+  "EQUINOX ACCESS FILTER",
   "QUERY BLOCKED",
-  "NOT AN EMS QUERY",
-  "COLLEGE EVENTS ONLY",
+  "NOT AN EQUINOX QUERY",
+  "COLLEGE SUMMIT ONLY",
 ];
 
 const THEME_STYLES = {
@@ -42,6 +43,7 @@ const THEME_STYLES = {
 };
 
 export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
+  isActive,
   durationSeconds = 10,
   onComplete,
 }) => {
@@ -54,6 +56,12 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
   );
 
   useEffect(() => {
+    if (!isActive) {
+      setTags([]);
+      setRemaining(durationSeconds);
+      return;
+    }
+
     // Inject keyframes into document head if not already present
     const styleId = "ems-error-spam-keyframes";
     if (!document.getElementById(styleId)) {
@@ -68,22 +76,30 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
           80% { transform: translate(3px, 3px) rotate(calc(var(--rot) + 2deg)); }
         }
         @keyframes emsPulse {
-          0%, 100% { opacity: 0.95; transform: scale(var(--scale)) rotate(var(--rot)); }
-          50% { opacity: 0.4; transform: scale(calc(var(--scale) * 1.1)) rotate(var(--rot)); }
+          0%, 100% { transform: scale(var(--scale)) rotate(var(--rot)); opacity: 0.95; }
+          50% { transform: scale(calc(var(--scale) * 1.08)) rotate(var(--rot)); opacity: 1; }
         }
-        @keyframes emsSpawnFade {
-          0% { opacity: 0; transform: scale(0.4) rotate(0deg); }
-          100% { opacity: 0.95; transform: scale(var(--scale)) rotate(var(--rot)); }
+        @keyframes emsGlitch {
+          0% { transform: translate(0) rotate(var(--rot)); }
+          20% { transform: translate(-2px, 2px) rotate(var(--rot)); }
+          40% { transform: translate(-2px, -2px) rotate(var(--rot)); }
+          60% { transform: translate(2px, 2px) rotate(var(--rot)); }
+          80% { transform: translate(2px, -2px) rotate(var(--rot)); }
+          100% { transform: translate(0) rotate(var(--rot)); }
         }
       `;
       document.head.appendChild(styleEl);
     }
 
-    // Function to generate a new random tag
     const spawnTag = () => {
       tagCounter.current += 1;
-      const text = ERROR_MESSAGES[Math.floor(Math.random() * ERROR_MESSAGES.length)];
-      const anims: Array<"shake" | "pulse" | "glitch"> = ["shake", "pulse", "glitch"];
+      const text =
+        ERROR_MESSAGES[Math.floor(Math.random() * ERROR_MESSAGES.length)];
+      const anims: Array<"shake" | "pulse" | "glitch"> = [
+        "shake",
+        "pulse",
+        "glitch",
+      ];
       const themes: Array<"red" | "crimson" | "amber" | "dark"> = [
         "red",
         "crimson",
@@ -103,7 +119,6 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
       };
 
       setTags((prev) => {
-        // Cap max simultaneous DOM elements to 35 to prevent lag
         const updated = [...prev, newTag];
         if (updated.length > 35) {
           return updated.slice(updated.length - 35);
@@ -137,7 +152,11 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
       clearInterval(spawnInterval);
       clearInterval(countdownInterval);
     };
-  }, [durationSeconds, onComplete]);
+  }, [isActive, durationSeconds, onComplete]);
+
+  if (!isActive) {
+    return null;
+  }
 
   const overlayContent = (
     <>
@@ -156,7 +175,7 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
           border: 0,
         }}
       >
-        This question is outside the EMS Assistant scope. Chat is temporarily unavailable for 10 seconds.
+        This question is outside the Equinox Assistant scope. Chat is temporarily paused for 10 seconds.
       </div>
 
       {/* Visual random error message overlay */}
@@ -169,7 +188,7 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
           width: "100vw",
           height: "100vh",
           pointerEvents: "none",
-          zIndex: 999999,
+          zIndex: 9999999,
           overflow: "hidden",
           userSelect: "none",
         }}
@@ -178,13 +197,11 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
           const theme = THEME_STYLES[tag.colorTheme];
           const isReduced = prefersReducedMotion.current;
 
-          let animationStyle = "emsSpawnFade 0.25s ease-out forwards";
+          let animStyle = "";
           if (!isReduced) {
-            if (tag.animType === "shake") {
-              animationStyle += ", emsShake 0.4s infinite alternate ease-in-out";
-            } else if (tag.animType === "pulse") {
-              animationStyle += ", emsPulse 0.8s infinite alternate ease-in-out";
-            }
+            if (tag.animType === "shake") animStyle = "emsShake 0.4s infinite";
+            if (tag.animType === "pulse") animStyle = "emsPulse 0.8s infinite";
+            if (tag.animType === "glitch") animStyle = "emsGlitch 0.2s infinite";
           }
 
           return (
@@ -192,24 +209,26 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
               key={tag.id}
               style={
                 {
+                  "--rot": `${tag.rotation}deg`,
+                  "--scale": tag.scale,
                   position: "absolute",
                   top: `${tag.top}%`,
                   left: `${tag.left}%`,
-                  background: theme.bg,
+                  transform: `translate(-50%, -50%) rotate(${tag.rotation}deg) scale(${tag.scale})`,
+                  backgroundColor: theme.bg,
                   color: theme.text,
                   border: `2px solid ${theme.border}`,
-                  padding: "8px 16px",
+                  padding: "10px 18px",
                   borderRadius: "8px",
                   fontWeight: 900,
-                  fontSize: "15px",
-                  letterSpacing: "1px",
-                  boxShadow: "0 8px 16px rgba(0,0,0,0.35)",
+                  fontSize: "14px",
+                  letterSpacing: "0.08em",
                   textTransform: "uppercase",
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+                  animation: animStyle,
+                  fontFamily:
+                    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace',
                   whiteSpace: "nowrap",
-                  fontFamily: "system-ui, -apple-system, sans-serif",
-                  "--rot": `${tag.rotation}deg`,
-                  "--scale": tag.scale,
-                  animation: animationStyle,
                 } as React.CSSProperties
               }
             >
@@ -221,7 +240,9 @@ export const ErrorSpamOverlay: React.FC<ErrorSpamProps> = ({
     </>
   );
 
-  return typeof document !== "undefined"
-    ? ReactDOM.createPortal(overlayContent, document.body)
-    : null;
+  // Render via portal directly to document.body so it overlays everything
+  if (typeof document !== "undefined") {
+    return ReactDOM.createPortal(overlayContent, document.body);
+  }
+  return overlayContent;
 };
