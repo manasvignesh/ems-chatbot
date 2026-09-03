@@ -4,7 +4,7 @@ import { ChatApiClient } from "./api";
 import { pageContextManager } from "./context";
 import { ChatPanel } from "./ChatPanel";
 import { ErrorSpamOverlay } from "./ErrorSpam";
-import { MessageSquare, Sparkles } from "lucide-react";
+import { Bot, Sparkles } from "lucide-react";
 
 interface ChatWidgetProps {
   options?: WidgetInitOptions;
@@ -103,17 +103,26 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ options = {} }) => {
         onComplete={handleDismissErrorSpam}
       />
 
-      {/* Floating Launcher Button */}
+      {/* Floating Futuristic Cyber Robot Launcher Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="ems-launcher-btn"
+          className="ems-launcher-cyber"
           aria-label="Open The Equinox 2.0 Assistant"
-          title="Open The Equinox 2.0 Assistant"
+          title="Chat with Equinox AI Robot"
         >
-          <Sparkles className="ems-launcher-sparkle" size={16} />
-          <MessageSquare size={24} />
-          <span className="ems-launcher-badge">Equinox AI</span>
+          <div className="ems-robot-avatar-wrapper">
+            <div className="ems-robot-pulse-ring"></div>
+            <div className="ems-robot-icon-box">
+              <Bot size={22} className="ems-robot-icon" />
+              <span className="ems-robot-online-dot"></span>
+            </div>
+          </div>
+          <div className="ems-launcher-label-box">
+            <span className="ems-launcher-title">Equinox AI</span>
+            <span className="ems-launcher-subtitle">Online • Ask AI</span>
+          </div>
+          <Sparkles size={14} className="ems-launcher-sparkle-glow" />
         </button>
       )}
 

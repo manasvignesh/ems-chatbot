@@ -1,19 +1,19 @@
 export const WIDGET_STYLES = `
 :host {
-  --ems-primary: #4f46e5;
-  --ems-primary-hover: #4338ca;
+  --ems-primary: #6366f1;
+  --ems-primary-hover: #4f46e5;
   --ems-primary-light: #eef2ff;
-  --ems-primary-border: #c7d2fe;
-  --ems-bg: #0f172a;
-  --ems-card-bg: #1e293b;
-  --ems-border: #334155;
+  --ems-primary-border: #818cf8;
+  --ems-bg: #0b0f19;
+  --ems-card-bg: #151c2e;
+  --ems-border: #222f49;
   --ems-text: #f8fafc;
   --ems-text-muted: #94a3b8;
-  --ems-user-bubble: #4f46e5;
+  --ems-user-bubble: #6366f1;
   --ems-user-text: #ffffff;
-  --ems-bot-bubble: #1e293b;
+  --ems-bot-bubble: #151c2e;
   --ems-bot-text: #f8fafc;
-  --ems-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --ems-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7);
   --ems-radius: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--ems-text);
@@ -36,47 +36,121 @@ export const WIDGET_STYLES = `
   pointer-events: auto;
 }
 
-.ems-launcher,
-.ems-launcher-btn {
+/* Futuristic Cyber Robot Launcher Button */
+.ems-launcher-cyber {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 9999999;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.95), rgba(15, 23, 42, 0.95));
+  backdrop-filter: blur(12px);
   color: #ffffff;
-  padding: 12px 20px;
+  padding: 8px 18px 8px 10px;
   border-radius: 9999px;
-  box-shadow: 0 10px 25px -3px rgba(79, 70, 229, 0.5), 0 4px 6px -4px rgba(79, 70, 229, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.45), 0 0 0 1px rgba(129, 140, 248, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  border: none;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   outline: none;
   pointer-events: auto;
 }
 
-.ems-launcher:hover,
-.ems-launcher-btn:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 15px 30px -3px rgba(79, 70, 229, 0.6);
-  background: linear-gradient(135deg, #4338ca, #6d28d9);
+.ems-launcher-cyber:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 15px 40px -5px rgba(139, 92, 246, 0.65), 0 0 20px rgba(99, 102, 241, 0.5), 0 0 0 1.5px rgba(167, 139, 250, 0.6);
+  background: linear-gradient(135deg, rgba(49, 46, 129, 0.98), rgba(24, 24, 58, 0.98));
 }
 
-.ems-launcher:active,
-.ems-launcher-btn:active {
+.ems-launcher-cyber:active {
   transform: translateY(0) scale(0.97);
 }
 
-.ems-launcher-badge {
-  display: inline-flex;
+/* Robot Avatar & Pulse Animation */
+.ems-robot-avatar-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
   align-items: center;
-  font-size: 13px;
-  font-weight: 600;
+  justify-content: center;
+}
+
+.ems-robot-pulse-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #6366f1, #a855f7, #ec4899, #6366f1);
+  animation: ems-spin-glow 3s linear infinite;
+  filter: blur(4px);
+  opacity: 0.8;
+}
+
+.ems-robot-icon-box {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.ems-launcher-cyber:hover .ems-robot-icon-box {
+  transform: rotate(-10deg) scale(1.08);
+}
+
+.ems-robot-icon {
+  animation: ems-robot-bounce 2.5s ease-in-out infinite;
+}
+
+.ems-robot-online-dot {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border: 2px solid #0f172a;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+/* Label Box */
+.ems-launcher-label-box {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.15;
+}
+
+.ems-launcher-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: linear-gradient(90deg, #ffffff, #c7d2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ems-launcher-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #a5b4fc;
+}
+
+.ems-launcher-sparkle-glow {
+  color: #fbbf24;
+  margin-left: 2px;
+  filter: drop-shadow(0 0 4px #fbbf24);
+  animation: ems-pulse-sparkle 2s infinite ease-in-out;
 }
 
 /* Chat Panel Container */
@@ -111,8 +185,7 @@ export const WIDGET_STYLES = `
     border-radius: 0;
     border: none;
   }
-  .ems-launcher,
-  .ems-launcher-btn {
+  .ems-launcher-cyber {
     bottom: 16px;
     right: 16px;
   }
@@ -145,7 +218,7 @@ export const WIDGET_STYLES = `
   color: #ffffff;
   font-weight: 700;
   font-size: 15px;
-  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
 }
 
 .ems-title {
@@ -244,8 +317,8 @@ export const WIDGET_STYLES = `
 .ems-suggestion-chip {
   flex-shrink: 0;
   white-space: nowrap;
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: #151c2e;
+  border: 1px solid #28354f;
   color: #cbd5e1;
   padding: 7px 13px;
   border-radius: 9999px;
@@ -263,7 +336,7 @@ export const WIDGET_STYLES = `
   border-color: #6366f1;
   color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
 }
 
 .ems-suggestion-chip:disabled {
@@ -312,10 +385,10 @@ export const WIDGET_STYLES = `
 }
 
 .ems-message-assistant .ems-bubble {
-  background-color: #1e293b;
+  background-color: #151c2e;
   color: #f1f5f9;
   border-bottom-left-radius: 4px;
-  border: 1px solid #334155;
+  border: 1px solid #28354f;
 }
 
 .ems-bubble p {
@@ -415,8 +488,8 @@ export const WIDGET_STYLES = `
 
 .ems-textarea {
   flex: 1;
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: #151c2e;
+  border: 1px solid #28354f;
   border-radius: 12px;
   padding: 10px 14px;
   color: #ffffff;
@@ -476,6 +549,21 @@ export const WIDGET_STYLES = `
 
 .ems-dot:nth-child(1) { animation-delay: -0.32s; }
 .ems-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes ems-spin-glow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ems-robot-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes ems-pulse-sparkle {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
 
 @keyframes ems-slide-up {
   from { opacity: 0; transform: translateY(8px); }
