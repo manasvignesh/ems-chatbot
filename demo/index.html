@@ -324,7 +324,7 @@
   <!-- Embed Standalone Equinox Assistant Widget -->
   <script src="/widget/widget.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function launchEquinoxWidget() {
       if (window.EMSAssistant) {
         window.EMSAssistant.init({
           botId: 'ems',
@@ -337,7 +337,13 @@
           }
         });
       }
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', launchEquinoxWidget);
+    } else {
+      launchEquinoxWidget();
+    }
   </script>
 </body>
 </html>

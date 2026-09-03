@@ -110,7 +110,7 @@
     const eventId = urlParams.get('id') || 'startup-poly';
     const subEvent = subEventsMap[eventId] || subEventsMap['startup-poly'];
 
-    document.addEventListener('DOMContentLoaded', () => {
+    function launchEquinoxWidget() {
       if (window.EMSAssistant) {
         window.EMSAssistant.init({
           botId: 'ems',
@@ -123,7 +123,13 @@
           }
         });
       }
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', launchEquinoxWidget);
+    } else {
+      launchEquinoxWidget();
+    }
 
     function askPrompt(promptText) {
       if (window.EMSAssistant) {
