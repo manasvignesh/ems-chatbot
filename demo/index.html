@@ -3,280 +3,341 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLRIT CIE - Event Management System (EMS)</title>
+  <title>The Equinox 2.0 — MLRIT CIE E-Summit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-main);
-    }
-    .logo-badge {
-      background: var(--primary);
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 6px 12px;
-      border-radius: 10px;
-    }
-    .logo-text h1 {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-    .logo-text p {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .hero {
-      max-width: 1200px;
-      margin: 40px auto 20px;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .hero h2 {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -1px;
-    }
-    .hero p {
-      font-size: 16px;
-      color: var(--text-muted);
-      margin-top: 10px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .events-section {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 24px;
-      flex: 1;
-    }
-    .section-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 24px;
-    }
-    .event-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .event-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08);
-      border-color: #cbd5e1;
-    }
-    .category-badge {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      background: #eef2ff;
-      color: var(--primary);
-      margin-bottom: 12px;
-      width: fit-content;
-    }
-    .event-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text-main);
-    }
-    .event-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-    .event-meta {
-      font-size: 13px;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      margin-bottom: 16px;
-    }
-    .view-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary);
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .view-btn:hover {
-      background: var(--primary-hover);
-    }
-    footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border);
-      padding: 24px;
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-top: auto;
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .heading-font { font-family: 'Space Grotesk', sans-serif; }
+    .hero-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15), transparent 70%);
     }
   </style>
 </head>
-<body>
-  <header>
-    <div class="nav-container">
-      <a href="/demo/index.html" class="logo">
-        <div class="logo-badge">CIE</div>
-        <div class="logo-text">
-          <h1>EMS Portal</h1>
-          <p>MLR Institute of Technology</p>
+<body class="bg-slate-950 text-slate-100 min-h-screen hero-glow antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header / Navigation -->
+  <header class="border-b border-slate-800/80 sticky top-0 bg-slate-950/85 backdrop-blur-md z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
+          EQ
         </div>
-      </a>
+        <div>
+          <span class="heading-font text-lg font-bold tracking-tight text-white">THE EQUINOX 2.0</span>
+          <span class="text-xs text-indigo-400 block font-medium">MLRIT CIE E-Summit</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#events" class="hover:text-indigo-400 transition-colors">Sub-Events</a>
+        <a href="#about-cie" class="hover:text-indigo-400 transition-colors">About CIE</a>
+        <a href="#sponsorship" class="hover:text-indigo-400 transition-colors">Sponsorship</a>
+        <a href="#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button onclick="window.EMSAssistant && window.EMSAssistant.open()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 transition-all flex items-center gap-2">
+          <span>✨ Ask Equinox AI</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <div class="hero">
-      <h2>Discover MLRIT College Events</h2>
-      <p>Explore hackathons, technical workshops, seminars, and competitions hosted by student chapters and CIE.</p>
+  <!-- Hero Section -->
+  <section class="relative pt-16 pb-20 overflow-hidden border-b border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/80 border border-indigo-700/40 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-6">
+        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+        30–31 October • MLR Institute of Technology, Hyderabad
+      </div>
+      <h1 class="heading-font text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto">
+        Where Passion Meets <span class="bg-gradient-to-r from-indigo-400 via-violet-300 to-pink-400 bg-clip-text text-transparent">Perseverance</span>
+      </h1>
+      <p class="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        The premier 2-day flagship E-Summit by <strong>Centre for Innovation & Entrepreneurship (CIE)</strong>. Take on real-world business challenges, pitch to investors, explore internships, and compete across 10 thrilling sub-events.
+      </p>
+
+      <!-- Key Stats Banner -->
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center">
+          <div class="heading-font text-2xl sm:text-3xl font-bold text-indigo-400">600+</div>
+          <div class="text-xs text-slate-400 mt-1">Expected Students</div>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center">
+          <div class="heading-font text-2xl sm:text-3xl font-bold text-violet-400">15+</div>
+          <div class="text-xs text-slate-400 mt-1">Visiting Startups</div>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center">
+          <div class="heading-font text-2xl sm:text-3xl font-bold text-pink-400">3,000+</div>
+          <div class="text-xs text-slate-400 mt-1">Campus Footfall</div>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center">
+          <div class="heading-font text-2xl sm:text-3xl font-bold text-emerald-400">10</div>
+          <div class="text-xs text-slate-400 mt-1">Flagship Sub-Events</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 Sub-Events Catalog -->
+  <section id="events" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="heading-font text-3xl font-bold text-white">The 10 Flagship Sub-Events</h2>
+      <p class="text-sm text-slate-400 mt-2">Explore competitions, keynotes, simulations, and career opportunities at Equinox 2.0.</p>
     </div>
 
-    <section class="events-section">
-      <h3 class="section-title">Upcoming Events</h3>
-      <div class="events-grid">
-        
-        <!-- Event 1: HackVerse -->
-        <div class="event-card">
-          <div>
-            <span class="category-badge">Hackathon</span>
-            <h4 class="event-title">HackVerse 2026</h4>
-            <p class="event-desc">MLRIT's premier 24-hour national hackathon focused on AI, Healthcare, and IoT solutions with ₹50,000 cash prizes.</p>
-            <div class="event-meta">
-              <div>📅 <strong>Date:</strong> Sep 12-13, 2026</div>
-              <div>📍 <strong>Venue:</strong> CIE Block, 3rd Floor Labs</div>
-              <div>👥 <strong>Team:</strong> 2 to 4 members</div>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- 1. Spotlight -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-950 text-indigo-300 border border-indigo-800/50">Keynote Talks</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
           </div>
-          <a href="/demo/event.html" class="view-btn">View Event Details →</a>
+          <h3 class="text-lg font-bold text-white">Spotlight</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Keynote presentations from industry experts on emerging technologies, industry trends, and the future of entrepreneurship.
+          </p>
         </div>
-
-        <!-- Event 2: IoT Workshop -->
-        <div class="event-card">
-          <div>
-            <span class="category-badge">Workshop</span>
-            <h4 class="event-title">Hands-on IoT & Embedded Systems</h4>
-            <p class="event-desc">Practical masterclass on ESP32 programming, sensor telemetry, and cloud MQTT telemetry integration.</p>
-            <div class="event-meta">
-              <div>📅 <strong>Date:</strong> Sep 5, 2026 (10:00 AM)</div>
-              <div>📍 <strong>Venue:</strong> Embedded Systems Lab (Room 214)</div>
-              <div>👥 <strong>Eligibility:</strong> Open to all years</div>
-            </div>
-          </div>
-          <a href="/demo/event.html?id=iot-robotics-workshop" class="view-btn">View Event Details →</a>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=spotlight" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
         </div>
-
-        <!-- Event 3: AI Agents Bootcamp -->
-        <div class="event-card">
-          <div>
-            <span class="category-badge">Seminar</span>
-            <h4 class="event-title">Autonomous AI Agents & GenAI Bootcamp</h4>
-            <p class="event-desc">Deep dive into building multi-agent systems, RAG architectures, and autonomous workflows with LLMs.</p>
-            <div class="event-meta">
-              <div>📅 <strong>Date:</strong> Sep 9, 2026 (02:00 PM)</div>
-              <div>📍 <strong>Venue:</strong> Main Auditorium, Central Block</div>
-              <div>👥 <strong>Organized by:</strong> AI Mavericks</div>
-            </div>
-          </div>
-          <a href="/demo/event.html?id=ai-agents-bootcamp" class="view-btn">View Event Details →</a>
-        </div>
-
-        <!-- Event 4: CyberShield CTF -->
-        <div class="event-card">
-          <div>
-            <span class="category-badge">Competition</span>
-            <h4 class="event-title">CyberShield Capture The Flag (CTF)</h4>
-            <p class="event-desc">Jeopardy-style cybersecurity challenge covering web exploitation, cryptography, and forensics.</p>
-            <div class="event-meta">
-              <div>📅 <strong>Date:</strong> Sep 18, 2026 (01:00 PM)</div>
-              <div>📍 <strong>Venue:</strong> Cyber Security Lab 4</div>
-              <div>👥 <strong>Prizes:</strong> ₹27,000 Prize Pool</div>
-            </div>
-          </div>
-          <a href="/demo/event.html?id=cybershield-ctf" class="view-btn">View Event Details →</a>
-        </div>
-
       </div>
-    </section>
-  </main>
 
-  <footer>
-    <p>© 2026 MLRIT Centre for Innovation & Entrepreneurship. All rights reserved.</p>
-  </footer>
+      <!-- 2. Crossroads -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-950 text-amber-300 border border-amber-800/50">Case Study</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">Crossroads</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            A business case-study competition where teams analyse real-world challenges and develop practical, actionable strategies.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=crossroads" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
 
-  <!-- Embed EMS Assistant Standalone Chat Widget -->
-  <script
-    src="/widget/widget.js"
-    data-api-url="http://localhost:8000"
-    data-bot-id="ems"
-    data-auto-init="true"
-  ></script>
+      <!-- 3. Startup Expo -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800/50">Exhibition</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">Startup Expo</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Dedicated exhibition platform for startups to showcase products, solutions, and ideas to students, mentors, and investors.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=startup-expo" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+      <!-- 4. Brand Battles -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-rose-950 text-rose-300 border border-rose-800/50">Debate</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">Brand Battles</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Competitive brand debate between teams representing rival companies from the same industry, defending strategies with market data.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=brand-battles" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+      <!-- 5. IPL Auction -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-blue-950 text-blue-300 border border-blue-800/50">Simulation</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">IPL Auction</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Simulated cricket auction where participants act as team owners, manage budgets, bid strategically for players, and build teams.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=ipl-auction" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+      <!-- 6. Hustle Mania -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-orange-950 text-orange-300 border border-orange-800/50">Sales / Negotiation</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">Hustle Mania</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Live marketing and selling competition where participants sell products of their choice, testing persuasion and negotiation skills.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=hustle-mania" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+      <!-- 7. Internship Drive -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-purple-950 text-purple-300 border border-purple-800/50">Career / Hiring</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">Internship Drive</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Direct connection point between students and visiting companies/startups offering valuable internship opportunities.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=internship-drive" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+      <!-- 8. Startup Poly -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-teal-950 text-teal-300 border border-teal-800/50">Business Game</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">Startup Poly</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Fast-paced Monopoly-inspired business simulation game where players build startups, manage finances, and navigate market risks.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=startup-poly" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+      <!-- 9. E-Cell Meet -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-cyan-950 text-cyan-300 border border-cyan-800/50">Networking</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">E-Cell Meet</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Brings together college E-Cells and student leaders across campuses to share ideas, exchange experiences, and collaborate.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=e-cell-meet" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+      <!-- 10. Pitch Deck -->
+      <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-pink-950 text-pink-300 border border-pink-800/50">Pitching</span>
+            <span class="text-xs text-slate-400">30–31 Oct</span>
+          </div>
+          <h3 class="text-lg font-bold text-white">Pitch Deck</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Startup pitching platform where student founders present their business ideas directly to investors, mentors, and industry experts.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400">MLRIT Campus</span>
+          <a href="event.html?id=pitch-deck" class="text-xs font-semibold text-indigo-400 hover:text-indigo-300">View Details →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sponsorship Tiers -->
+  <section id="sponsorship" class="py-16 bg-slate-900/30 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="heading-font text-3xl font-bold text-white">Sponsorship Packages</h2>
+        <p class="text-sm text-slate-400 mt-2">Gain prominent physical & digital brand exposure to 600+ students and innovators.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 text-center">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300">Associate</span>
+          <div class="text-xl font-bold text-white mt-4">₹20K – ₹40K</div>
+          <p class="text-xs text-slate-400 mt-2">Website acknowledgement, 10 min talk slot, stall opportunity.</p>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 text-center">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-800">Premium</span>
+          <div class="text-xl font-bold text-white mt-4">₹50K – ₹75K</div>
+          <p class="text-xs text-slate-400 mt-2">YouTube promotions, social media tags/logos, 10 min talk slot.</p>
+        </div>
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 text-center">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-violet-950 text-violet-300 border border-violet-800">Exclusive</span>
+          <div class="text-xl font-bold text-white mt-4">₹75K – ₹1.2L</div>
+          <p class="text-xs text-slate-400 mt-2">Social reels & quizzes, 10-15 min talk, award ceremony presence.</p>
+        </div>
+        <div class="bg-gradient-to-b from-indigo-950/80 to-slate-900 border border-indigo-500/40 rounded-2xl p-6 text-center shadow-lg shadow-indigo-500/10">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-600 text-white">Title Sponsor</span>
+          <div class="text-xl font-bold text-white mt-4">₹1.2L – ₹1.8L</div>
+          <p class="text-xs text-indigo-200/80 mt-2">Maximum branding, logos on ID cards/banners, opening speech mention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-r from-indigo-950/40 via-slate-900 to-violet-950/40 border border-slate-800 rounded-3xl p-8 sm:p-12 text-center">
+      <h2 class="heading-font text-2xl sm:text-3xl font-bold text-white">Have Questions about Equinox 2.0?</h2>
+      <p class="text-sm text-slate-400 mt-2 max-w-xl mx-auto">
+        Reach out directly to the MLRIT-CIE student coordination team or ask our built-in AI assistant.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-6 text-xs text-slate-300">
+        <div>📧 <span class="text-white font-medium">cie@mlrinstitutions.ac.in</span></div>
+        <div>🌐 <span class="text-white font-medium">mlritcie.in</span></div>
+        <div>📞 <span class="text-white font-medium">Shyam: +91 93900 06806</span></div>
+        <div>📞 <span class="text-white font-medium">Sanjana: +91 82084 99746</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Embed Standalone Equinox Assistant Widget -->
+  <script src="/widget/widget.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.EMSAssistant) {
+        window.EMSAssistant.init({
+          botId: 'ems',
+          apiUrl: 'http://localhost:8000',
+          position: 'bottom-right',
+          initialContext: {
+            pageType: 'portal',
+            eventId: 'equinox-2.0',
+            eventName: 'The Equinox 2.0'
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

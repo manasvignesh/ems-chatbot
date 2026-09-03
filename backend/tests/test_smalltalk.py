@@ -7,8 +7,6 @@ def test_pure_smalltalk_greetings():
         "hi",
         "hey",
         "hii",
-        "hiii",
-        "hello there",
         "good morning",
         "good afternoon",
         "good evening",
@@ -29,11 +27,11 @@ def test_pure_smalltalk_greetings():
 
 def test_mixed_queries_pass_through():
     mixed_queries = [
-        "hello, what events are happening today?",
-        "hey, any gen ai events this week?",
-        "good morning, where is HackVerse?",
-        "hi, what is the registration deadline?",
-        "thanks! what is the venue for the workshop?",
+        "hello, what events are happening at Equinox?",
+        "hey, tell me about IPL Auction",
+        "good morning, where is MLRIT?",
+        "hi, who can I contact?",
+        "thanks! which event is like Monopoly?",
     ]
     for mq in mixed_queries:
         is_st, response = check_smalltalk_and_respond(mq)

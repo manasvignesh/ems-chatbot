@@ -1,55 +1,42 @@
 import pytest
-from app.connectors.ems import ems_connector
 from app.rag.hybrid_search import hybrid_search_engine
-from app.rag.indexer import knowledge_indexer
+from app.scripts.reset_equinox_knowledge import reset_knowledge
 
 
 @pytest.fixture(autouse=True)
 async def setup_index():
-    events = await ems_connector.fetch_public_events()
-    for e in events:
-        await knowledge_indexer.index_event(e, bot_id="ems")
+    await reset_knowledge(bot_id="ems")
 
 
 @pytest.mark.asyncio
-async def test_gen_ai_precision_isolation():
-    """
-    CRITICAL TEST:
-    When user asks for 'gen ai' (or 'generative ai'), the chatbot must return ONLY the
-    Autonomous AI Agents & GenAI Bootcamp and MUST NOT return HackVerse 2026 or IoT Workshop!
-    """
-    chunks, cards, sources = await hybrid_search_engine.search("gen ai", bot_id="ems")
-
-    assert len(cards) == 1, f"Expected 1 card for 'gen ai', got {len(cards)}: {[c.title for c in cards]}"
-    assert cards[0].event_id == "ai-agents-bootcamp"
-    assert "Autonomous AI Agents" in cards[0].title or "GenAI" in cards[0].title
-
-    # Explicitly ensure HackVerse is NOT present
-    card_ids = [c.event_id for c in cards]
-    assert "hackverse-2026" not in card_ids
-    assert "iot-robotics-workshop" not in card_ids
-
-
-@pytest.mark.asyncio
-async def test_gen_ai_typo_precision_isolation():
-    """Test 'genrative ai' typo returns only GenAI Bootcamp."""
-    chunks, cards, sources = await hybrid_search_engine.search("genrative ai", bot_id="ems")
+async def test_startup_poly_monopoly_precision():
+    """Test 'monopoly event' returns ONLY Startup Poly."""
+    chunks, cards, sources = await hybrid_search_engine.search("monopoly event", bot_id="ems")
     assert len(cards) == 1
-    assert cards[0].event_id == "ai-agents-bootcamp"
-    assert "hackverse-2026" not in [c.event_id for c in cards]
+    assert cards[0].event_id == "startup-poly"
+    assert "Startup Poly" in cards[0].title
 
 
 @pytest.mark.asyncio
-async def test_hackverse_precision_isolation():
-    """Test 'hackverse' returns only HackVerse."""
-    chunks, cards, sources = await hybrid_search_engine.search("hackverse", bot_id="ems")
+async def test_ipl_auction_cricket_precision():
+    """Test 'cricket bidding' returns ONLY IPL Auction."""
+    chunks, cards, sources = await hybrid_search_engine.search("cricket bidding", bot_id="ems")
     assert len(cards) == 1
-    assert cards[0].event_id == "hackverse-2026"
+    assert cards[0].event_id == "ipl-auction"
+    assert "IPL Auction" in cards[0].title
 
 
 @pytest.mark.asyncio
-async def test_iot_precision_isolation():
-    """Test 'iot worshop' typo returns only IoT Workshop."""
-    chunks, cards, sources = await hybrid_search_engine.search("iot worshop", bot_id="ems")
+async def test_internship_drive_precision():
+    """Test 'internship opportunities' returns ONLY Internship Drive."""
+    chunks, cards, sources = await hybrid_search_engine.search("internship opportunities", bot_id="ems")
     assert len(cards) == 1
-    assert cards[0].event_id == "iot-robotics-workshop"
+    assert cards[0].event_id == "internship-drive"
+
+
+@pytest.mark.asyncio
+async def test_pitch_deck_precision():
+    """Test 'pitch startup idea' returns ONLY Pitch Deck."""
+    chunks, cards, sources = await hybrid_search_engine.search("pitch startup idea", bot_id="ems")
+    assert len(cards) == 1
+    assert cards[0].event_id == "pitch-deck"

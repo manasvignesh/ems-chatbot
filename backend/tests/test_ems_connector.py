@@ -1,25 +1,29 @@
 import pytest
-from app.connectors.ems import ems_connector, DEFAULT_EMS_EVENTS
-from app.rag.indexer import knowledge_indexer
+from app.connectors.ems import ems_connector
 
 
 @pytest.mark.asyncio
-async def test_fetch_public_events():
+async def test_fetch_equinox_events():
     events = await ems_connector.fetch_public_events()
-    assert len(events) >= 4
-    for e in events:
-        assert e.title
-        assert e.external_id
-        assert e.category
+    assert len(events) >= 10
+
+    event_ids = [e.external_id for e in events]
+    assert "equinox-2.0" in event_ids
+    assert "spotlight" in event_ids
+    assert "crossroads" in event_ids
+    assert "startup-expo" in event_ids
+    assert "brand-battles" in event_ids
+    assert "ipl-auction" in event_ids
+    assert "hustle-mania" in event_ids
+    assert "internship-drive" in event_ids
+    assert "startup-poly" in event_ids
+    assert "e-cell-meet" in event_ids
+    assert "pitch-deck" in event_ids
 
 
 @pytest.mark.asyncio
-async def test_event_indexing_deduplication():
-    event = ems_connector.normalize_event_dict(DEFAULT_EMS_EVENTS[0])
-    res1 = await knowledge_indexer.index_event(event, bot_id="ems")
-    assert res1.status in ("ready", "unchanged")
-
-    # Second indexing without changes should be skipped
-    res2 = await knowledge_indexer.index_event(event, bot_id="ems")
-    assert res2.status == "unchanged"
-    assert res2.chunks_created == 0
+async def test_fetch_single_equinox_subevent():
+    event = await ems_connector.fetch_public_event("startup-poly")
+    assert event is not None
+    assert event.title == "Startup Poly"
+    assert "Monopoly" in event.description

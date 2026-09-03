@@ -1,0 +1,680 @@
+[
+  {
+    "category": "OVERVIEW",
+    "question": "What is Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox", "E-Summit"]
+  },
+  {
+    "category": "OVERVIEW",
+    "question": "What is The Equinox 2.0?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox", "MLR Institute of Technology"]
+  },
+  {
+    "category": "OVERVIEW",
+    "question": "Tell me about Equinox",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox", "2-day"]
+  },
+  {
+    "category": "OVERVIEW",
+    "question": "What's Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox"]
+  },
+  {
+    "category": "OVERVIEW",
+    "question": "Explain Equinox",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox"]
+  },
+  {
+    "category": "OVERVIEW",
+    "question": "What happens at Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox", "entrepreneurship"]
+  },
+  {
+    "category": "OVERVIEW",
+    "question": "What is the tagline of Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Passion Meets Perseverance"]
+  },
+  {
+    "category": "OVERVIEW",
+    "question": "Is Equinox an E-Summit?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["E-Summit"]
+  },
+  {
+    "category": "DATES",
+    "question": "When is Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["30–31 October"]
+  },
+  {
+    "category": "DATES",
+    "question": "What are the dates of Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["30–31 October"]
+  },
+  {
+    "category": "DATES",
+    "question": "When does Equinox start?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["30–31 October"]
+  },
+  {
+    "category": "DATES",
+    "question": "How many days is Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["2-day"]
+  },
+  {
+    "category": "DATES",
+    "question": "Is Equinox on 30 October?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["30–31 October"]
+  },
+  {
+    "category": "DATES",
+    "question": "when event",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["30–31 October"]
+  },
+  {
+    "category": "YEAR",
+    "question": "What year is Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["not stated in the available", "30–31 October"]
+  },
+  {
+    "category": "LOCATION",
+    "question": "Where is Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["MLR Institute of Technology", "Hyderabad"]
+  },
+  {
+    "category": "LOCATION",
+    "question": "Where is it happening?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["MLR Institute of Technology"]
+  },
+  {
+    "category": "LOCATION",
+    "question": "Venue of Equinox",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["MLR Institute of Technology", "Hyderabad"]
+  },
+  {
+    "category": "LOCATION",
+    "question": "Which college is hosting Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["MLR Institute of Technology"]
+  },
+  {
+    "category": "LOCATION",
+    "question": "Is Equinox in Hyderabad?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Hyderabad", "MLR Institute of Technology"]
+  },
+  {
+    "category": "ORGANIZER",
+    "question": "Who is organizing Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Centre for Innovation & Entrepreneurship", "MLRIT"]
+  },
+  {
+    "category": "ORGANIZER",
+    "question": "Who conducts Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Centre for Innovation & Entrepreneurship"]
+  },
+  {
+    "category": "CIE",
+    "question": "What is MLRIT CIE?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["2015", "Centre for Innovation & Entrepreneurship"]
+  },
+  {
+    "category": "CIE",
+    "question": "When was CIE established?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["2015"]
+  },
+  {
+    "category": "CIE",
+    "question": "What does CIE do?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup cohorts", "MetaLoop", "Inventron"]
+  },
+  {
+    "category": "SUB_EVENTS",
+    "question": "What events are there at Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Spotlight", "Crossroads", "Startup Expo", "Brand Battles", "IPL Auction", "Hustle Mania", "Internship Drive", "Startup Poly", "E-Cell Meet", "Pitch Deck"]
+  },
+  {
+    "category": "SUB_EVENTS",
+    "question": "List all sub-events",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["10", "Spotlight", "Startup Poly", "Pitch Deck"]
+  },
+  {
+    "category": "SUB_EVENTS",
+    "question": "What competitions are there?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Crossroads", "Brand Battles", "IPL Auction", "Hustle Mania"]
+  },
+  {
+    "category": "SPOTLIGHT",
+    "question": "What is Spotlight?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Spotlight", "industry experts", "technology"]
+  },
+  {
+    "category": "SPOTLIGHT",
+    "question": "Tell me about Spotlight",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Spotlight", "presentations", "emerging technologies"]
+  },
+  {
+    "category": "SPOTLIGHT",
+    "question": "Which event has expert talks?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Spotlight"]
+  },
+  {
+    "category": "CROSSROADS",
+    "question": "What is Crossroads?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Crossroads", "case-study"]
+  },
+  {
+    "category": "CROSSROADS",
+    "question": "Tell me about Crossroads",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Crossroads", "business challenges", "strategies"]
+  },
+  {
+    "category": "CROSSROADS",
+    "question": "Which event is about solving business problems?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Crossroads"]
+  },
+  {
+    "category": "STARTUP_EXPO",
+    "question": "What is Startup Expo?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Expo", "showcase", "products"]
+  },
+  {
+    "category": "STARTUP_EXPO",
+    "question": "Where can startups showcase products?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Expo"]
+  },
+  {
+    "category": "STARTUP_EXPO",
+    "question": "Can startups display products?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Expo"]
+  },
+  {
+    "category": "BRAND_BATTLES",
+    "question": "What is Brand Battles?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Brand Battles", "debate", "rival brands"]
+  },
+  {
+    "category": "BRAND_BATTLES",
+    "question": "Is Brand Battles a debate?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Brand Battles", "competitive debate"]
+  },
+  {
+    "category": "BRAND_BATTLES",
+    "question": "Which event involves rival brands?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Brand Battles"]
+  },
+  {
+    "category": "IPL_AUCTION",
+    "question": "What is IPL Auction?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["IPL Auction", "simulated cricket auction", "bid for players"]
+  },
+  {
+    "category": "IPL_AUCTION",
+    "question": "How does IPL Auction work in Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["IPL Auction", "team owners", "budgets"]
+  },
+  {
+    "category": "IPL_AUCTION",
+    "question": "Which event lets us bid for cricket players?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["IPL Auction"]
+  },
+  {
+    "category": "HUSTLE_MANIA",
+    "question": "What is Hustle Mania?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Hustle Mania", "marketing", "selling"]
+  },
+  {
+    "category": "HUSTLE_MANIA",
+    "question": "Which event is about selling products?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Hustle Mania"]
+  },
+  {
+    "category": "HUSTLE_MANIA",
+    "question": "Which event tests negotiation skills?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Hustle Mania", "negotiation"]
+  },
+  {
+    "category": "INTERNSHIP_DRIVE",
+    "question": "What is Internship Drive?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Internship Drive", "startups", "internship"]
+  },
+  {
+    "category": "INTERNSHIP_DRIVE",
+    "question": "Are internships available at Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Internship Drive", "companies"]
+  },
+  {
+    "category": "INTERNSHIP_DRIVE",
+    "question": "Which event is for internships?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Internship Drive"]
+  },
+  {
+    "category": "STARTUP_POLY",
+    "question": "What is Startup Poly?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Poly", "Monopoly", "business simulation"]
+  },
+  {
+    "category": "STARTUP_POLY",
+    "question": "Which event is like Monopoly?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Poly"]
+  },
+  {
+    "category": "STARTUP_POLY",
+    "question": "Is Startup Poly a simulation?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Poly", "simulation"]
+  },
+  {
+    "category": "ECELL_MEET",
+    "question": "What is E-Cell Meet?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["E-Cell Meet", "different colleges", "collaborate"]
+  },
+  {
+    "category": "ECELL_MEET",
+    "question": "Which event is for networking between colleges?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["E-Cell Meet"]
+  },
+  {
+    "category": "ECELL_MEET",
+    "question": "Can E-Cells from other colleges participate?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["E-Cell Meet", "cross-campus"]
+  },
+  {
+    "category": "PITCH_DECK",
+    "question": "What is Pitch Deck?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Pitch Deck", "investors", "mentors"]
+  },
+  {
+    "category": "PITCH_DECK",
+    "question": "Where can I pitch my startup idea?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Pitch Deck"]
+  },
+  {
+    "category": "PITCH_DECK",
+    "question": "Can I present to investors?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Pitch Deck", "investors"]
+  },
+  {
+    "category": "SCALE_IMPACT",
+    "question": "How many participants are expected at Equinox 2.0?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["600+"]
+  },
+  {
+    "category": "SCALE_IMPACT",
+    "question": "How many startups are attending?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["15+"]
+  },
+  {
+    "category": "SCALE_IMPACT",
+    "question": "What is the footfall of Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["3,000+"]
+  },
+  {
+    "category": "SCALE_IMPACT",
+    "question": "How many participants attended the previous edition?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["700+"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "Why sponsor Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["600+", "visibility", "stalls"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "What sponsorship tiers are available?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Associate", "Premium", "Exclusive", "Title"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "What is the Title Sponsor price?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["1,20,000", "1,80,000"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "What does Title Sponsor get?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Title Sponsor", "YouTube", "opening speech"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "What is the Associate Sponsor price?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["20,000", "40,000"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "What is the Premium Sponsor price?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["50,000", "75,000"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "What is the Exclusive Sponsor price?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["75,000", "1,20,000"]
+  },
+  {
+    "category": "SPONSORSHIP",
+    "question": "Who are the previous sponsors?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["GeeksforGeeks", "Cisco thingQbator", "Codegnan"]
+  },
+  {
+    "category": "CONTACT",
+    "question": "Who should I contact for Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["cie@mlrinstitutions.ac.in", "Shyam", "Sanjana"]
+  },
+  {
+    "category": "CONTACT",
+    "question": "Give me the Equinox contact number",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["93900 06806"]
+  },
+  {
+    "category": "CONTACT",
+    "question": "What is the CIE email?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["cie@mlrinstitutions.ac.in"]
+  },
+  {
+    "category": "CONTACT",
+    "question": "What is the official website?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["mlritcie.in"]
+  },
+  {
+    "category": "CONTACT",
+    "question": "Where is MLRIT CIE located?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Dundigal", "Hyderabad", "500 043"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "equniox details",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "spotlite event",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Spotlight"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "crossraods event",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Crossroads"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "brand batles",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Brand Battles"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "ipl action",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["IPL Auction"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "hustle maniya",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Hustle Mania"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "intership drive",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Internship Drive"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "startup polly",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Poly"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "ecell meet",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["E-Cell Meet"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "pitchdeck event",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Pitch Deck"]
+  },
+  {
+    "category": "TYPOS",
+    "question": "whr is equinox",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["MLR Institute of Technology"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "monopoly event",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Startup Poly"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "cricket bidding event",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["IPL Auction"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "which event is about selling products?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Hustle Mania"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "which event has internships?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Internship Drive"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "where can I pitch my startup idea?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Pitch Deck"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "which event has industry talks?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Spotlight"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "brand debate event",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Brand Battles"]
+  },
+  {
+    "category": "SEMANTIC_DESCRIPTIONS",
+    "question": "business case study competition",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Crossroads"]
+  },
+  {
+    "category": "NATURAL_STUDENT_LANGUAGE",
+    "question": "bro equinox enti",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Equinox", "E-Summit"]
+  },
+  {
+    "category": "NATURAL_STUDENT_LANGUAGE",
+    "question": "startup idea ekkada pitch cheyali",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["Pitch Deck"]
+  },
+  {
+    "category": "NATURAL_STUDENT_LANGUAGE",
+    "question": "contact evaru",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["cie@mlrinstitutions.ac.in", "coordinators"]
+  },
+  {
+    "category": "NATURAL_STUDENT_LANGUAGE",
+    "question": "venue ekkada",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["MLR Institute of Technology"]
+  },
+  {
+    "category": "UNSUPPORTED",
+    "question": "What is the registration fee for Equinox?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["not available in the current Equinox information"]
+  },
+  {
+    "category": "UNSUPPORTED",
+    "question": "What is the registration deadline?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["not specified in the available Equinox information"]
+  },
+  {
+    "category": "UNSUPPORTED",
+    "question": "What is the prize money for competitions?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["not listed in the available Equinox material"]
+  },
+  {
+    "category": "UNSUPPORTED",
+    "question": "What is the exact hour by hour timetable?",
+    "expected_answer_mode": ["FAQ_EXACT", "FAQ_FUZZY", "FAQ_SEMANTIC"],
+    "must_contain": ["not specified in the current Equinox material"]
+  },
+  {
+    "category": "BASIC_CONVERSATION",
+    "question": "hello",
+    "expected_answer_mode": ["SMALL_TALK"],
+    "must_contain": ["Equinox 2.0 Assistant"]
+  },
+  {
+    "category": "BASIC_CONVERSATION",
+    "question": "hi",
+    "expected_answer_mode": ["SMALL_TALK"],
+    "must_contain": ["Equinox"]
+  },
+  {
+    "category": "BASIC_CONVERSATION",
+    "question": "thanks",
+    "expected_answer_mode": ["SMALL_TALK"],
+    "must_contain": ["You're welcome", "Equinox"]
+  },
+  {
+    "category": "BASIC_CONVERSATION",
+    "question": "bye",
+    "expected_answer_mode": ["SMALL_TALK"],
+    "must_contain": ["Equinox"]
+  },
+  {
+    "category": "BASIC_CONVERSATION",
+    "question": "who are you",
+    "expected_answer_mode": ["SMALL_TALK"],
+    "must_contain": ["official AI Assistant", "The Equinox 2.0"]
+  },
+  {
+    "category": "BASIC_CONVERSATION",
+    "question": "what can you do",
+    "expected_answer_mode": ["SMALL_TALK"],
+    "must_contain": ["sub-events", "Spotlight"]
+  },
+  {
+    "category": "BASIC_CONVERSATION",
+    "question": "help",
+    "expected_answer_mode": ["SMALL_TALK"],
+    "must_contain": ["What is Equinox", "IPL Auction"]
+  },
+  {
+    "category": "OUT_OF_SCOPE",
+    "question": "Who won yesterday's IPL match?",
+    "expected_answer_mode": ["OUT_OF_SCOPE"],
+    "must_contain": []
+  },
+  {
+    "category": "OUT_OF_SCOPE",
+    "question": "What is the current cricket score?",
+    "expected_answer_mode": ["OUT_OF_SCOPE"],
+    "must_contain": []
+  },
+  {
+    "category": "OUT_OF_SCOPE",
+    "question": "Write my chemistry homework essay on polymers",
+    "expected_answer_mode": ["OUT_OF_SCOPE"],
+    "must_contain": []
+  },
+  {
+    "category": "OUT_OF_SCOPE",
+    "question": "Give me stock market investment advice",
+    "expected_answer_mode": ["OUT_OF_SCOPE"],
+    "must_contain": []
+  }
+]

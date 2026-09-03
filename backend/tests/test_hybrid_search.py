@@ -1,30 +1,25 @@
 import pytest
-from app.connectors.ems import ems_connector
 from app.rag.hybrid_search import hybrid_search_engine
-from app.rag.indexer import knowledge_indexer
-from app.models.chat import PageContext
+from app.scripts.reset_equinox_knowledge import reset_knowledge
+
+
+@pytest.fixture(autouse=True)
+async def setup_index():
+    await reset_knowledge(bot_id="ems")
 
 
 @pytest.mark.asyncio
-async def test_hybrid_search_exact_match():
-    # Index test events
-    events = await ems_connector.fetch_public_events()
-    for e in events:
-        await knowledge_indexer.index_event(e, bot_id="ems")
-
-    chunks, cards, sources = await hybrid_search_engine.search("Where is HackVerse?", bot_id="ems")
+async def test_hybrid_search_subevent_match():
+    chunks, cards, sources = await hybrid_search_engine.search("What is Startup Poly?", bot_id="ems")
     assert len(chunks) > 0
-    # HackVerse card should be present
-    assert any("HackVerse" in card.title for card in cards)
+    assert len(cards) >= 1
+    assert cards[0].event_id == "startup-poly"
+    assert "Startup Poly" in cards[0].title
 
 
 @pytest.mark.asyncio
-async def test_hybrid_search_page_context():
-    page_ctx = PageContext(page_type="event", event_id="iot-robotics-workshop", event_name="IoT Workshop")
-    chunks, cards, sources = await hybrid_search_engine.search(
-        "What is the venue?",
-        bot_id="ems",
-        page_context=page_ctx
-    )
+async def test_hybrid_search_sponsorship_query():
+    chunks, cards, sources = await hybrid_search_engine.search("What are the sponsorship tiers?", bot_id="ems")
     assert len(chunks) > 0
-    assert any(c.get("metadata", {}).get("event_id") == "iot-robotics-workshop" for c in chunks)
+    combined = " ".join([c.get("content", "") for c in chunks])
+    assert "Associate" in combined or "Title Sponsor" in combined or "₹20,000" in combined

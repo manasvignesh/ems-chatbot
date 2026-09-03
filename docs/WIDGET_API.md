@@ -1,80 +1,76 @@
-# JavaScript Widget API Reference
+# Embeddable Widget API Reference
 
-The EMS Assistant embed widget exposes a global `window.EMSAssistant` object that provides programmatic control over the chatbot lifecycle, state, and page context.
+The **The Equinox 2.0 Assistant Widget** provides a clean JavaScript API on the global `window.EMSAssistant` object to control visibility, message transmission, and host page context synchronization.
 
 ---
 
-## Global Object: `window.EMSAssistant`
+## 1. Initialization: `init(options)`
 
-### 1. `init(options?: WidgetInitOptions)`
-Manually initializes the widget inside an open Shadow DOM root attached to `document.body`. (Note: If `data-auto-init="true"` is set on the script tag, initialization happens automatically upon DOM ready).
+Initializes the widget inside a shadow root attached to `document.body`.
 
 ```javascript
 window.EMSAssistant.init({
-  apiUrl: "https://assistant.ems.mlritcie.in",
-  botId: "ems",
+  botId: 'ems',
+  apiUrl: 'https://api.yourdomain.com', // Base URL of FastAPI backend
+  position: 'bottom-right',             // 'bottom-right' | 'bottom-left'
   initialContext: {
-    pageType: "home",
-    pathname: "/"
+    pageType: 'event',                  // 'portal' | 'event' | 'calendar' | 'registration'
+    eventId: 'startup-poly',
+    eventName: 'Startup Poly'
   }
 });
 ```
 
 ---
 
-### 2. `open()`
-Programmatically opens the chat panel.
+## 2. Dynamic Context Synchronization: `setContext(context)`
+
+Updates the active page context on single-page-app (SPA) route changes or modal open events:
 
 ```javascript
-window.EMSAssistant.open();
-```
-
----
-
-### 3. `close()`
-Programmatically closes the chat panel, returning to the floating launcher button.
-
-```javascript
-window.EMSAssistant.close();
-```
-
----
-
-### 4. `toggle()`
-Toggles the open/closed state of the chat panel.
-
-```javascript
-window.EMSAssistant.toggle();
-```
-
----
-
-### 5. `setContext(context: PageContext)`
-Updates the active page context sent alongside all subsequent user queries.
-
-```javascript
+// On navigating to Startup Poly sub-event page
 window.EMSAssistant.setContext({
-  pageType: "event",
-  eventId: "hackverse-2026",
-  eventName: "HackVerse 2026",
-  pathname: window.location.pathname
+  pageType: 'event',
+  eventId: 'startup-poly',
+  eventName: 'Startup Poly'
+});
+
+// On navigating back to Equinox Home
+window.EMSAssistant.setContext({
+  pageType: 'portal',
+  eventId: 'equinox-2.0',
+  eventName: 'The Equinox 2.0'
 });
 ```
 
 ---
 
-### 6. `resetConversation()`
-Clears the active conversation history in the widget and initiates a new session ID.
+## 3. Programmatic Control Methods
+
+### `open()`
+Opens the floating chat window.
 
 ```javascript
-window.EMSAssistant.resetConversation();
+window.EMSAssistant.open();
 ```
 
----
-
-### 7. `destroy()`
-Unmounts the React root, removes the Shadow DOM container, and cleans up all listeners and timers.
+### `close()`
+Closes the floating chat window.
 
 ```javascript
-window.EMSAssistant.destroy();
+window.EMSAssistant.close();
+```
+
+### `toggle()`
+Toggles the chat window open/close state.
+
+```javascript
+window.EMSAssistant.toggle();
+```
+
+### `sendMessage(text)`
+Sends a message on behalf of the user and opens the chat window:
+
+```javascript
+window.EMSAssistant.sendMessage("Tell me about IPL Auction");
 ```

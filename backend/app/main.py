@@ -11,19 +11,19 @@ from app.api.knowledge import router as knowledge_router
 from app.api.sync import router as sync_router
 from app.core.config import settings
 from app.core.logging import logger
-from app.services.knowledge import knowledge_service
+from app.scripts.reset_equinox_knowledge import reset_knowledge
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application startup and shutdown hooks."""
     logger.info(f"Starting {settings.APP_NAME} in {settings.APP_ENV} mode...")
-    # Pre-index default EMS event catalog on startup
+    # Initialize authoritative Equinox 2.0 knowledge on boot
     try:
-        await knowledge_service.sync_ems_events(bot_id="ems")
-        logger.info("Baseline EMS event catalog initialized.")
+        await reset_knowledge(bot_id="ems")
+        logger.info("Authoritative Equinox 2.0 master knowledge catalog initialized.")
     except Exception as e:
-        logger.warning(f"Startup EMS sync warning: {e}")
+        logger.warning(f"Startup Equinox knowledge sync warning: {e}")
 
     yield
     logger.info(f"Shutting down {settings.APP_NAME}...")
@@ -31,8 +31,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=settings.APP_NAME,
-    description="Production RAG AI Event Assistant for MLRIT CIE Event Management System (EMS)",
-    version="1.0.0",
+    description="The Equinox 2.0 AI Event Assistant for MLRIT CIE",
+    version="2.0.0",
     lifespan=lifespan,
 )
 
@@ -76,8 +76,11 @@ if os.path.exists(demo_path):
 @app.get("/")
 async def root():
     return {
-        "service": settings.APP_NAME,
+        "service": "The Equinox 2.0 Assistant Backend",
         "status": "online",
+        "event": "The Equinox 2.0",
+        "dates": "30–31 October",
+        "location": "MLR Institute of Technology, Hyderabad",
         "docs": "/docs",
         "health": "/health",
         "widget_url": "/widget/widget.js",

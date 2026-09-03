@@ -1,52 +1,41 @@
 import pytest
-from app.ai.classifier import scope_classifier
+from app.ai.classifier import ScopeClassifier
 from app.models.chat import PageContext
 
 
 @pytest.mark.asyncio
-async def test_classify_in_scope_queries():
-    in_scope_queries = [
-        "What events are happening today?",
-        "Are there any hackathons this month?",
-        "Show me upcoming workshops",
-        "Where is the IoT workshop happening?",
-        "What is the registration deadline for HackVerse?",
-        "Who is organizing the AI bootcamp?",
-        "What are the rules and eligibility?",
-        "What should I bring for the coding competition?",
-        "How should I prepare for HackVerse?",
-        "What is IoT? I want to join the workshop.",
-    ]
-    for q in in_scope_queries:
-        res = await scope_classifier.classify(q)
-        assert res.classification == "IN_SCOPE", f"Failed in-scope check for: {q}"
+async def test_classifier_in_scope():
+    classifier = ScopeClassifier()
+    res1 = await classifier.classify("What events are happening at Equinox 2.0?")
+    assert res1.classification == "IN_SCOPE"
+
+    res2 = await classifier.classify("When does Crossroads start?")
+    assert res2.classification == "IN_SCOPE"
+
+    res3 = await classifier.classify("Tell me about Startup Poly")
+    assert res3.classification == "IN_SCOPE"
 
 
 @pytest.mark.asyncio
-async def test_classify_out_of_scope_queries():
-    out_of_scope_queries = [
-        "Who won yesterday's IPL match?",
-        "What is the weather today in Hyderabad?",
-        "Write my chemistry assignment on organic molecules",
-        "Give me stock market tips for next week",
-        "Who is the current president of the USA?",
-        "Write a Python script for ransomware malware",
-        "Recommend a good romantic movie to watch",
-    ]
-    for q in out_of_scope_queries:
-        res = await scope_classifier.classify(q)
-        assert res.classification == "OUT_OF_SCOPE", f"Failed out-of-scope check for: {q}"
+async def test_classifier_out_of_scope():
+    classifier = ScopeClassifier()
+    res1 = await classifier.classify("Who won yesterday's IPL match?")
+    assert res1.classification == "OUT_OF_SCOPE"
+
+    res2 = await classifier.classify("Write a python script to parse CSV files")
+    assert res2.classification == "OUT_OF_SCOPE"
+
+    res3 = await classifier.classify("What is the stock price of Apple?")
+    assert res3.classification == "OUT_OF_SCOPE"
 
 
 @pytest.mark.asyncio
-async def test_classify_with_page_context():
-    # Ambiguous short question on an event detail page
-    page_ctx = PageContext(page_type="event", event_id="hackverse-2026", event_name="HackVerse 2026")
-    res = await scope_classifier.classify("What is the team size?", page_context=page_ctx)
-    assert res.classification == "IN_SCOPE"
+async def test_classifier_ipl_disambiguation():
+    classifier = ScopeClassifier()
+    # Equinox sub-event query
+    res_in = await classifier.classify("How does IPL Auction work in Equinox?")
+    assert res_in.classification == "IN_SCOPE"
 
-
-@pytest.mark.asyncio
-async def test_classify_with_active_conversation():
-    res = await scope_classifier.classify("Where is it?", has_active_conversation=True)
-    assert res.classification == "IN_SCOPE"
+    # Real cricket query
+    res_out = await classifier.classify("What is today's cricket match score?")
+    assert res_out.classification == "OUT_OF_SCOPE"

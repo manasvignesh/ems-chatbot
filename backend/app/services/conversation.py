@@ -4,6 +4,21 @@ from collections import defaultdict
 from app.models.chat import ChatMessage
 from app.core.config import settings
 
+EQUINOX_NAMED_EVENTS = [
+    "The Equinox 2.0",
+    "Equinox",
+    "Spotlight",
+    "Crossroads",
+    "Startup Expo",
+    "Brand Battles",
+    "IPL Auction",
+    "Hustle Mania",
+    "Internship Drive",
+    "Startup Poly",
+    "E-Cell Meet",
+    "Pitch Deck",
+]
+
 
 class ConversationManager:
     """Manages bounded in-memory conversation history and entity resolution for pronoun follow-ups."""
@@ -20,7 +35,7 @@ class ConversationManager:
             self.sessions[conversation_id] = self.sessions[conversation_id][-self.max_history:]
 
         # Detect and store entity mentioned
-        if role == "assistant" or role == "user":
+        if role in ("assistant", "user"):
             found = self._extract_event_mention(content)
             if found:
                 self.last_entities[conversation_id] = found
@@ -39,7 +54,7 @@ class ConversationManager:
         return "\n".join(lines)
 
     def resolve_query_context(self, query: str, conversation_id: str) -> str:
-        """Resolve pronouns like 'it', 'this event', 'that workshop' if an active entity was tracked."""
+        """Resolve pronouns like 'it', 'this event', 'that activity' if an active entity was tracked."""
         last_entity = self.last_entities.get(conversation_id)
         if not last_entity:
             return query
@@ -51,33 +66,21 @@ class ConversationManager:
             r"\bthat\b",
             r"\bthis event\b",
             r"\bthat event\b",
-            r"\bthe workshop\b",
-            r"\bthe hackathon\b",
+            r"\bthe competition\b",
+            r"\bthe activity\b",
         ]
 
         if any(re.search(p, lower_q) for p in pronoun_triggers) and last_entity.lower() not in lower_q:
-            # Append entity context hint
             return f"{query} (referring to {last_entity})"
 
         return query
 
-    def clear_conversation(self, conversation_id: str):
-        if conversation_id in self.sessions:
-            del self.sessions[conversation_id]
-        if conversation_id in self.last_entities:
-            del self.last_entities[conversation_id]
-
     def _extract_event_mention(self, text: str) -> Optional[str]:
-        known_events = [
-            "HackVerse",
-            "Hands-on IoT & Embedded Systems Workshop",
-            "Autonomous AI Agents & GenAI Bootcamp",
-            "CyberShield CTF",
-            "CIE Innovation Summit",
-        ]
-        for e in known_events:
-            if e.lower() in text.lower():
-                return e
+        """Scan text for mentions of Equinox sub-events."""
+        for event_name in EQUINOX_NAMED_EVENTS:
+            pattern = r"\b" + re.escape(event_name) + r"\b"
+            if re.search(pattern, text, re.IGNORECASE):
+                return event_name
         return None
 
 

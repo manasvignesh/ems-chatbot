@@ -1,9 +1,10 @@
 import time
 import uuid
-from typing import Union
+from typing import Dict, List, Optional, Union
 from fastapi import APIRouter, HTTPException, Request, Response, status
 
 from app.ai.classifier import scope_classifier
+from app.ai.faq_matcher import faq_matcher
 from app.ai.gemini import gemini_client
 from app.ai.prompts import build_guarded_prompt
 from app.ai.query_analysis import query_analyzer
@@ -17,32 +18,63 @@ from app.models.chat import (
     ChatResponseError,
     ChatResponseOutOfScope,
     ChatResponseSuccess,
+    EventCard,
+    SourceReference,
 )
 from app.rag.hybrid_search import hybrid_search_engine
 from app.services.conversation import conversation_manager
 
 router = APIRouter(tags=["Chat"])
 
+# Development metrics tracker
+USAGE_METRICS = {
+    "total_queries": 0,
+    "small_talk_queries": 0,
+    "faq_exact_queries": 0,
+    "faq_fuzzy_queries": 0,
+    "faq_semantic_queries": 0,
+    "rag_direct_queries": 0,
+    "gemini_queries": 0,
+    "out_of_scope_queries": 0,
+}
+
 
 @router.get("/config/{bot_id}")
 async def get_bot_config(bot_id: str):
-    """Return bot metadata and suggested questions for the widget."""
+    """Return bot metadata and Equinox 2.0 suggested questions."""
     return {
         "bot_id": bot_id,
-        "name": "EMS Assistant",
-        "title": "EMS Assistant",
-        "subtitle": "Event Assistant",
-        "greeting": "Hi! I can help you discover events, understand event details, schedules, venues, registration information, rules, and other EMS-related information.",
-        "placeholder": "Ask about events, venues, rules...",
+        "name": "The Equinox 2.0 Assistant",
+        "title": "The Equinox 2.0 Assistant",
+        "subtitle": "MLRIT CIE E-Summit",
+        "greeting": "Hi! I can help you discover The Equinox 2.0 sub-events, dates (30–31 Oct), venue at MLRIT, competitions, sponsorship tiers, and contacts.",
+        "placeholder": "Ask about Equinox events, venue, sponsorship...",
         "suggested_prompts": [
-            "Events happening today",
-            "What workshops are happening this week?",
-            "Any hackathons this month?",
-            "Tell me about HackVerse",
-            "Registration deadlines",
-            "How should I prepare for a hackathon?"
+            "What is Equinox 2.0?",
+            "What events are there?",
+            "When is Equinox?",
+            "Tell me about IPL Auction",
+            "Which event is for internships?",
+            "What is Startup Poly?",
+            "What is Pitch Deck?",
+            "Who can I contact?"
         ],
         "cooldown_seconds": settings.OUT_OF_SCOPE_COOLDOWN_SECONDS,
+    }
+
+
+@router.get("/metrics")
+async def get_usage_metrics():
+    """Get Gemini avoidance metrics."""
+    total = USAGE_METRICS["total_queries"]
+    gemini = USAGE_METRICS["gemini_queries"]
+    avoided = total - gemini
+    avoidance_rate = (avoided / total * 100) if total > 0 else 100.0
+
+    return {
+        **USAGE_METRICS,
+        "gemini_avoided_queries": avoided,
+        "gemini_avoidance_rate_pct": round(avoidance_rate, 2),
     }
 
 
@@ -51,10 +83,11 @@ async def get_bot_config(bot_id: str):
     response_model=Union[ChatResponseSuccess, ChatResponseOutOfScope, ChatResponseError],
 )
 async def chat_endpoint(request: Request, payload: ChatRequest):
-    """Core user-facing chat endpoint for EMS Assistant."""
+    """Core user-facing chat endpoint for The Equinox 2.0 Assistant."""
     start_time = time.time()
     client_ip = request.client.host if request.client else "unknown"
     conversation_id = payload.conversation_id or str(uuid.uuid4())
+    USAGE_METRICS["total_queries"] += 1
 
     # 1. Rate Limiting Check
     rate_limit_key = f"{client_ip}:{conversation_id}"
@@ -70,12 +103,13 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
     if not clean_message:
         raise HTTPException(status_code=400, detail="Message cannot be empty.")
 
-    # 3. Fast Preloaded Small-Talk Check (0ms, bypasses RAG & Gemini for pure greetings/thanks/help)
+    # 3. Fast Preloaded Small-Talk Layer (0 ms, 0 API calls)
     is_small_talk, fast_response = check_smalltalk_and_respond(clean_message)
     if is_small_talk and fast_response:
+        USAGE_METRICS["small_talk_queries"] += 1
         conversation_manager.add_message(conversation_id, "user", clean_message)
         conversation_manager.add_message(conversation_id, "assistant", fast_response)
-        logger.info(f"Handled via preloaded conversation layer in {(time.time() - start_time)*1000:.1f}ms for conv: {conversation_id}")
+        logger.info(f"[Answer Mode: SMALL_TALK] query='{clean_message}' ({ (time.time() - start_time)*1000:.1f}ms)")
         return ChatResponseSuccess(
             status="success",
             conversation_id=conversation_id,
@@ -84,7 +118,49 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
             cards=[],
         )
 
-    # 4. Conversational History Sync (if client supplied additional history)
+    # 4. Fast Deterministic Equinox FAQ Matcher (Bypasses Gemini)
+    matched_faq, faq_mode, confidence = faq_matcher.match(clean_message)
+    if matched_faq and confidence >= 0.78:
+        if faq_mode == "FAQ_EXACT":
+            USAGE_METRICS["faq_exact_queries"] += 1
+        elif faq_mode == "FAQ_FUZZY":
+            USAGE_METRICS["faq_fuzzy_queries"] += 1
+        else:
+            USAGE_METRICS["faq_semantic_queries"] += 1
+
+        faq_answer = matched_faq["answer"]
+        conversation_manager.add_message(conversation_id, "user", clean_message)
+        conversation_manager.add_message(conversation_id, "assistant", faq_answer)
+
+        # Build card if specific sub-event is referenced
+        cards: List[EventCard] = []
+        entities = matched_faq.get("entities", [])
+        if entities and entities[0] != "The Equinox 2.0" and entities[0] not in ("Sponsorship", "Contact"):
+            sub_id = entities[0].lower().replace(" ", "-")
+            cards.append(
+                EventCard(
+                    event_id=sub_id,
+                    title=entities[0],
+                    date="30–31 October",
+                    venue="MLR Institute of Technology, Hyderabad",
+                    organizer="MLRIT CIE",
+                    category="Sub-Event",
+                    url=f"/events/{sub_id}"
+                )
+            )
+
+        sources = [SourceReference(title="The Equinox 2.0 Master Knowledge", source_type="Equinox Brochure & Prospectus", url="/events/equinox-2.0")]
+
+        logger.info(f"[Answer Mode: {faq_mode}] query='{clean_message}' -> matched_faq='{matched_faq['id']}' (confidence={confidence:.2f}, {(time.time() - start_time)*1000:.1f}ms)")
+        return ChatResponseSuccess(
+            status="success",
+            conversation_id=conversation_id,
+            answer=faq_answer,
+            sources=sources,
+            cards=cards,
+        )
+
+    # 5. Conversational History Sync
     if payload.conversation_history:
         for msg in payload.conversation_history[-settings.MAX_CONVERSATION_HISTORY_MESSAGES:]:
             conversation_manager.add_message(conversation_id, msg.role, msg.content)
@@ -92,16 +168,16 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
     has_active_conv = len(conversation_manager.get_history(conversation_id)) > 0
     conversation_manager.add_message(conversation_id, "user", clean_message)
 
-    # 5. Layered Scope & Guardrail Classification
+    # 6. Layered Scope & Guardrail Classification
     scope_eval = await scope_classifier.classify(
         message=clean_message,
         page_context=payload.page_context,
         has_active_conversation=has_active_conv,
     )
 
-    # 6. Handle Out of Scope
     if scope_eval.classification == "OUT_OF_SCOPE":
-        logger.info(f"Out of scope rejected query: '{clean_message}' (reason: {scope_eval.reason})")
+        USAGE_METRICS["out_of_scope_queries"] += 1
+        logger.info(f"[Answer Mode: OUT_OF_SCOPE] query='{clean_message}' (reason: {scope_eval.reason})")
         return ChatResponseOutOfScope(
             status="out_of_scope",
             conversation_id=conversation_id,
@@ -112,7 +188,7 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
     # 7. Query Understanding & Typo Normalization
     query_analysis = query_analyzer.analyze(clean_message)
 
-    # 8. Resolve Query Context (e.g. Pronouns 'it', 'that event')
+    # 8. Resolve Query Context (Pronouns 'it', 'that event')
     resolved_query = conversation_manager.resolve_query_context(query_analysis.normalized_query, conversation_id)
 
     # 9. Precision-First Hybrid RAG Retrieval
@@ -127,12 +203,11 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
 
         retrieved_text = "\n\n---\n\n".join([c.get("content", "") for c in chunks])
 
-        # Page context string
         page_ctx_str = ""
         if payload.page_context and payload.page_context.event_id:
             page_ctx_str = f"User is viewing event: {payload.page_context.event_name or payload.page_context.event_id} (ID: {payload.page_context.event_id})"
 
-        # 10. Guarded Prompt Construction with Authoritative Time Context
+        # 10. Guarded Prompt Construction
         current_dt = get_current_time()
         conv_summary = conversation_manager.format_history_for_prompt(conversation_id)
         guarded_prompt = build_guarded_prompt(
@@ -143,12 +218,13 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
             current_dt=current_dt,
         )
 
-        # 11. Gemini Generation
+        # 11. Gemini Generation (Only when local FAQ didn't match)
+        USAGE_METRICS["gemini_queries"] += 1
         answer = await gemini_client.generate_response(prompt=guarded_prompt)
         conversation_manager.add_message(conversation_id, "assistant", answer)
 
         latency_ms = (time.time() - start_time) * 1000
-        logger.info(f"Chat response generated in {latency_ms:.1f}ms for conv: {conversation_id}")
+        logger.info(f"[Answer Mode: RAG_GEMINI] query='{clean_message}' (latency={latency_ms:.1f}ms)")
 
         return ChatResponseSuccess(
             status="success",
@@ -162,5 +238,5 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
         logger.error(f"Error processing chat request: {e}")
         return ChatResponseError(
             status="error",
-            message="We encountered an issue processing your question. Please try again shortly.",
+            message="We encountered an issue retrieving Equinox 2.0 details. Please try again.",
         )

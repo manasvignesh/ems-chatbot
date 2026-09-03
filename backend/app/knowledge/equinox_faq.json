@@ -1,0 +1,677 @@
+[
+  {
+    "id": "faq_equinox_overview",
+    "canonical_question": "What is Equinox 2.0?",
+    "category": "overview",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "what is equinox",
+      "what is the equinox",
+      "what is the equinox 2.0",
+      "what is the equinox 2 0",
+      "tell me about equinox",
+      "what's equinox",
+      "explain equinox",
+      "about equinox",
+      "equinox enti",
+      "equinox ante enti",
+      "bro equinox enti",
+      "what is this event",
+      "what type of event is equinox",
+      "is equinox an e-summit",
+      "is equinox an esummit",
+      "is equinox a summit",
+      "what happens at equinox",
+      "equinox details",
+      "equniox details",
+      "what is the theme of equinox",
+      "what is equinox tagline",
+      "tagline of equinox",
+      "what is the tagline of equinox"
+    ],
+    "keywords": ["equinox", "summit", "e-summit", "overview", "theme", "tagline", "passion", "perseverance"],
+    "answer": "The Equinox 2.0 is a premier 2-day E-Summit hosted at MLR Institute of Technology (MLRIT), Hyderabad, with the tagline \"Where Passion Meets Perseverance\". It is designed as a vibrant platform where students take on real-world challenges, explore entrepreneurship, compete, connect with startups and investors, and gain valuable practical experience through 10 exciting sub-events."
+  },
+  {
+    "id": "faq_equinox_dates",
+    "canonical_question": "When is Equinox 2.0 happening?",
+    "category": "dates",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "when is equinox",
+      "when is the equinox",
+      "equinox dates",
+      "what are the dates of equinox",
+      "which dates is equinox",
+      "when does equinox start",
+      "when does equinox end",
+      "is equinox on 30 october",
+      "is it on 30 and 31 october",
+      "how many days is equinox",
+      "duration of equinox",
+      "when event",
+      "equinox when",
+      "dates of equinox"
+    ],
+    "keywords": ["when", "date", "dates", "october", "30", "31", "how many days", "duration"],
+    "answer": "The Equinox 2.0 is scheduled for 30–31 October. It is a 2-day E-Summit."
+  },
+  {
+    "id": "faq_equinox_year",
+    "canonical_question": "What year is Equinox?",
+    "category": "dates",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "what year is equinox",
+      "which year is equinox happening",
+      "is equinox in 2026",
+      "is equinox in 2025",
+      "is equinox in 2024",
+      "what is the year of equinox"
+    ],
+    "keywords": ["year", "which year", "what year"],
+    "answer": "The specific year is not stated in the available Equinox information; the official dates provided are 30–31 October."
+  },
+  {
+    "id": "faq_equinox_location",
+    "canonical_question": "Where is Equinox taking place?",
+    "category": "location",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "where is equinox",
+      "whr is equinox",
+      "where is it happening",
+      "venue of equinox",
+      "equinox location",
+      "which college is hosting equinox",
+      "where is mlrit",
+      "is equinox in hyderabad",
+      "equinox venue",
+      "venue ekkada",
+      "location of equinox",
+      "where is the event held",
+      "which campus",
+      "where is mlrit cie located"
+    ],
+    "keywords": ["where", "location", "venue", "college", "campus", "hyderabad", "mlrit", "dundigal"],
+    "answer": "The Equinox 2.0 is held at MLR Institute of Technology (MLRIT), Dundigal Police Station Road, Hyderabad – 500 043, Telangana, India."
+  },
+  {
+    "id": "faq_equinox_organizer",
+    "canonical_question": "Who is organizing Equinox 2.0?",
+    "category": "organizer",
+    "entities": ["MLRIT CIE"],
+    "question_variants": [
+      "who is organizing equinox",
+      "who organizes equinox",
+      "organizer of equinox",
+      "which club is conducting equinox",
+      "who is behind equinox",
+      "tell me about the organizer",
+      "who conducts equinox"
+    ],
+    "keywords": ["organizer", "organizing", "conducted", "who organizes", "cie", "mlrit-cie"],
+    "answer": "The Equinox 2.0 is organized by the Centre for Innovation & Entrepreneurship (CIE) at MLR Institute of Technology (MLRIT)."
+  },
+  {
+    "id": "faq_cie_about",
+    "canonical_question": "What is MLRIT-CIE?",
+    "category": "organizer",
+    "entities": ["MLRIT CIE"],
+    "question_variants": [
+      "what is cie",
+      "what is mlrit cie",
+      "about cie",
+      "tell me about cie",
+      "centre for innovation and entrepreneurship",
+      "when was cie established",
+      "what does cie do",
+      "activities of cie"
+    ],
+    "keywords": ["cie", "mlrit-cie", "established", "2015", "incubator", "cell", "entrepreneurship"],
+    "answer": "Established in 2015, the Centre for Innovation & Entrepreneurship (CIE) at MLRIT is an entrepreneurship development cell dedicated to nurturing young innovators and supporting early-stage startups. CIE conducts startup cohorts, incubation, mentorship, hands-on workshops (IoT, UI/UX, WordPress), microprojects, and major hackathons such as MetaLoop (India's first AR/VR hackathon) and Inventron."
+  },
+  {
+    "id": "faq_subevents_list",
+    "canonical_question": "What events and competitions are happening at Equinox 2.0?",
+    "category": "sub_events",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "what events are there",
+      "what events are there at equinox",
+      "list all events",
+      "list all sub events",
+      "list all sub-events",
+      "what are the sub events",
+      "what are the sub-events",
+      "give me all sub events",
+      "give me all sub-events",
+      "what can i participate in",
+      "what is happening at equinox",
+      "what competitions are there",
+      "all events in equinox",
+      "sub events list",
+      "what all events are there",
+      "activities in equinox",
+      "what to do at equinox"
+    ],
+    "keywords": ["events", "sub-events", "competitions", "activities", "list", "all events", "participate"],
+    "answer": "The Equinox 2.0 features 10 core sub-events and activities:\n1. **Spotlight** (Industry expert keynote talks on tech & startups)\n2. **Crossroads** (Business case-study competition)\n3. **Startup Expo** (Startups showcasing products & solutions)\n4. **Brand Battles** (Competitive brand debate)\n5. **IPL Auction** (Simulated cricket auction & budget strategy)\n6. **Hustle Mania** (Live product marketing & negotiation challenge)\n7. **Internship Drive** (Connecting students with hiring startups & companies)\n8. **Startup Poly** (Monopoly-inspired business simulation game)\n9. **E-Cell Meet** (Inter-college E-Cell collaboration & networking)\n10. **Pitch Deck** (Startup pitching to investors & industry mentors)"
+  },
+  {
+    "id": "faq_spotlight",
+    "canonical_question": "What is Spotlight at Equinox?",
+    "category": "sub_events",
+    "entities": ["Spotlight"],
+    "question_variants": [
+      "what is spotlight",
+      "tell me about spotlight",
+      "what happens in spotlight",
+      "spotlight event",
+      "spotlite event",
+      "who speaks at spotlight",
+      "what will i learn in spotlight",
+      "which event has expert talks",
+      "which event has industry talks",
+      "industry talks",
+      "tech talks at equinox",
+      "spotlite"
+    ],
+    "keywords": ["spotlight", "expert talks", "industry experts", "presentations", "emerging technologies", "trends", "keynotes"],
+    "answer": "**Spotlight** features insightful presentations and keynotes from industry experts covering technology, entrepreneurship, and startups. It gives students firsthand insights into emerging technologies, industry trends, and the future of entrepreneurship."
+  },
+  {
+    "id": "faq_crossroads",
+    "canonical_question": "What is Crossroads at Equinox?",
+    "category": "sub_events",
+    "entities": ["Crossroads"],
+    "question_variants": [
+      "what is crossroads",
+      "tell me about crossroads",
+      "crossroads event",
+      "crossraods event",
+      "cross road event",
+      "is crossroads a case study competition",
+      "business case study event",
+      "business case study competition",
+      "which event is about solving business problems",
+      "cross road",
+      "crossraods",
+      "what happens in crossroads",
+      "i want to solve business cases"
+    ],
+    "keywords": ["crossroads", "case study", "business challenges", "problem solving", "decision making", "strategies"],
+    "answer": "**Crossroads** is a business case-study competition where participating teams analyse real-world business challenges and develop practical, actionable strategies. It develops problem-solving, decision-making, and critical business skills."
+  },
+  {
+    "id": "faq_startup_expo",
+    "canonical_question": "What is Startup Expo at Equinox?",
+    "category": "sub_events",
+    "entities": ["Startup Expo"],
+    "question_variants": [
+      "what is startup expo",
+      "tell me about startup expo",
+      "startup expo",
+      "start up expo",
+      "can startups display products",
+      "where can startups showcase products",
+      "which event lets startups display products",
+      "startup showcase event",
+      "discover startups"
+    ],
+    "keywords": ["startup expo", "expo", "showcase", "products", "solutions", "visibility", "exhibition"],
+    "answer": "**Startup Expo** gives emerging startups a dedicated platform to showcase their products, business ideas, and innovative solutions. It offers high brand visibility to startups while enabling students to discover new businesses and explore creative innovations."
+  },
+  {
+    "id": "faq_brand_battles",
+    "canonical_question": "What is Brand Battles at Equinox?",
+    "category": "sub_events",
+    "entities": ["Brand Battles"],
+    "question_variants": [
+      "what is brand battles",
+      "tell me about brand battles",
+      "brand battles",
+      "brand batles",
+      "brand debate event",
+      "brand debate competition",
+      "is brand battles a debate",
+      "which event involves rival brands",
+      "brand debate competition",
+      "defend brands event",
+      "which event involves brand debates"
+    ],
+    "keywords": ["brand battles", "debate", "rival brands", "defend", "case studies", "brand strategy"],
+    "answer": "**Brand Battles** is a competitive debate between teams representing rival brands from the same industry sector. Participants defend their assigned brands using real-time market data, case studies, and practical examples while challenging the strategies of competing teams."
+  },
+  {
+    "id": "faq_ipl_auction",
+    "canonical_question": "What is IPL Auction at Equinox?",
+    "category": "sub_events",
+    "entities": ["IPL Auction"],
+    "question_variants": [
+      "what is ipl auction",
+      "tell me about ipl auction",
+      "how does ipl auction work",
+      "how does ipl auction work in equinox",
+      "is there an ipl auction",
+      "ipl auction in equinox",
+      "tell me about ipl auction in equinox",
+      "ipl action",
+      "ipl aucion",
+      "cricket auction event",
+      "cricket bidding event",
+      "which event lets us bid for cricket players",
+      "bid for players event",
+      "cricket bidding",
+      "cricket auction"
+    ],
+    "keywords": ["ipl auction", "auction", "cricket", "bidding", "budget", "team owners", "simulation"],
+    "answer": "**IPL Auction** is an interactive simulated cricket auction where participants step into the shoes of franchise team owners. Teams manage virtual budgets, bid for players strategically, construct balanced squads, and make high-stakes tactical decisions."
+  },
+  {
+    "id": "faq_hustle_mania",
+    "canonical_question": "What is Hustle Mania at Equinox?",
+    "category": "sub_events",
+    "entities": ["Hustle Mania"],
+    "question_variants": [
+      "what is hustle mania",
+      "tell me about hustle mania",
+      "hustle mania",
+      "hustle maniya",
+      "which event is about selling products",
+      "which event tests marketing and negotiation",
+      "which event tests negotiation skills",
+      "selling competition",
+      "sales competition at equinox",
+      "negotiation event",
+      "marketing event",
+      "i like sales and marketing"
+    ],
+    "keywords": ["hustle mania", "selling", "sales", "marketing", "negotiation", "persuasion", "communication"],
+    "answer": "**Hustle Mania** is a live selling, marketing, and negotiation challenge where students sell products of their choice and compete directly with peers. It tests and hones persuasion, communication, salesmanship, and business negotiation skills."
+  },
+  {
+    "id": "faq_internship_drive",
+    "canonical_question": "What is the Internship Drive at Equinox?",
+    "category": "sub_events",
+    "entities": ["Internship Drive"],
+    "question_variants": [
+      "what is internship drive",
+      "tell me about internship drive",
+      "internship drive",
+      "intership drive",
+      "internsip drive",
+      "are internships available at equinox",
+      "which event is for internships",
+      "which event has internships",
+      "can i get an internship",
+      "i want internships",
+      "i need an internship",
+      "internship opportunities",
+      "which event is for internships"
+    ],
+    "keywords": ["internship drive", "internship", "internships", "jobs", "hiring", "startups", "career"],
+    "answer": "**Internship Drive** directly connects students with visiting startups and companies offering internship opportunities. It allows students to explore career paths, gain real-world working experience, build valuable professional networks, and sharpen employability skills."
+  },
+  {
+    "id": "faq_startup_poly",
+    "canonical_question": "What is Startup Poly at Equinox?",
+    "category": "sub_events",
+    "entities": ["Startup Poly"],
+    "question_variants": [
+      "what is startup poly",
+      "tell me about startup poly",
+      "startup poly",
+      "startup polly",
+      "which event is like monopoly",
+      "monopoly event",
+      "monopoly business game",
+      "business simulation game",
+      "is startup poly a simulation",
+      "startup monopoly"
+    ],
+    "keywords": ["startup poly", "monopoly", "simulation", "board game", "finances", "market risks", "strategy"],
+    "answer": "**Startup Poly** is a fast-paced business simulation game inspired by Monopoly. Participants build virtual startups, compete across dynamic markets, manage company finances, navigate risks, and make strategic decisions based on realistic business situations."
+  },
+  {
+    "id": "faq_ecell_meet",
+    "canonical_question": "What is E-Cell Meet at Equinox?",
+    "category": "sub_events",
+    "entities": ["E-Cell Meet"],
+    "question_variants": [
+      "what is e-cell meet",
+      "what is ecell meet",
+      "tell me about e-cell meet",
+      "e cell meet",
+      "ecell meet",
+      "can e-cells from other colleges participate",
+      "which event is for networking between colleges",
+      "networking for e-cells",
+      "i want to meet e-cells from other colleges",
+      "cross-campus collaboration"
+    ],
+    "keywords": ["e-cell meet", "ecell", "networking", "collaboration", "cross-campus", "e-cells"],
+    "answer": "**E-Cell Meet** convenes entrepreneurship cells (E-Cells) and student leaders from different colleges and various campuses to share ideas, exchange operational experiences, build long-term relationships, collaborate, and explore cross-campus collaborative entrepreneurial partnerships."
+  },
+  {
+    "id": "faq_pitch_deck",
+    "canonical_question": "What is Pitch Deck at Equinox?",
+    "category": "sub_events",
+    "entities": ["Pitch Deck"],
+    "question_variants": [
+      "what is pitch deck",
+      "tell me about pitch deck",
+      "pitch deck",
+      "pitchdeck",
+      "pitchdeck event",
+      "where can i pitch my startup idea",
+      "startup pitching event",
+      "can i present to investors",
+      "pitching competition",
+      "startup idea ekkada pitch cheyali",
+      "which event lets me pitch"
+    ],
+    "keywords": ["pitch deck", "pitching", "investors", "mentors", "startup ideas", "feedback", "presentation"],
+    "answer": "**Pitch Deck** is a dedicated startup pitching platform where aspiring student founders present their business ideas directly to investors, startup mentors, and industry experts to receive constructive feedback, strategic insights, and practical guidance."
+  },
+  {
+    "id": "faq_scale_and_metrics",
+    "canonical_question": "What is the expected scale and reach of Equinox 2.0?",
+    "category": "impact",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "how many participants are expected",
+      "how many participants are expected at equinox 2.0",
+      "how many students will attend",
+      "how many startups are attending",
+      "expected scale of equinox",
+      "footfall of equinox",
+      "what is the footfall of equinox",
+      "how big is equinox",
+      "previous edition participants",
+      "how many participants attended the previous edition",
+      "social media reach of equinox",
+      "community size"
+    ],
+    "keywords": ["scale", "participants", "600+", "15+", "700+", "footfall", "3000+", "impressions", "reach"],
+    "answer": "For Equinox 2.0, **600+ students/participants** and **15+ startups** are expected. Previously, Equinox gathered **700+ participants** with an overall footfall of **3,000+**. On social media, CIE has generated **62,400+ impressions** with **26,341+ accounts reached**, supported by a community of **2,000+ Instagram followers**, **870+ WhatsApp members**, and **300+ Discord members**."
+  },
+  {
+    "id": "faq_why_sponsor",
+    "canonical_question": "Why should companies sponsor Equinox 2.0?",
+    "category": "sponsorship",
+    "entities": ["Sponsorship"],
+    "question_variants": [
+      "why sponsor equinox",
+      "benefits of sponsoring equinox",
+      "why should a company sponsor",
+      "sponsorship opportunities",
+      "why partner with equinox"
+    ],
+    "keywords": ["why sponsor", "sponsor benefits", "visibility", "branding", "audience", "reach"],
+    "answer": "Sponsoring Equinox 2.0 gives companies direct access and prominent brand visibility to a dynamic audience of 600+ aspiring engineers, innovators, and student leaders. Sponsors gain physical presence via stalls, talk/demo slots, YouTube promotions, social media campaigns, event banners, and recognition across ID cards, certificates, and opening remarks."
+  },
+  {
+    "id": "faq_sponsorship_tiers",
+    "canonical_question": "What sponsorship tiers and prices are available for Equinox 2.0?",
+    "category": "sponsorship",
+    "entities": ["Sponsorship"],
+    "question_variants": [
+      "what sponsorship plans are available",
+      "what sponsorship tiers are available",
+      "sponsorship tiers",
+      "sponsorship price ranges",
+      "how much is sponsorship",
+      "cost to sponsor equinox",
+      "sponsorship packages",
+      "types of sponsors"
+    ],
+    "keywords": ["sponsorship tiers", "packages", "pricing", "associate", "premium", "exclusive", "title"],
+    "answer": "Equinox 2.0 offers four sponsorship tiers:\n• **Associate Sponsor**: ₹20,000 – ₹40,000\n• **Premium Sponsor**: ₹50,000 – ₹75,000\n• **Exclusive Sponsor**: ₹75,000 – ₹1,20,000\n• **Title Sponsor**: ₹1,20,000 – ₹1,80,000"
+  },
+  {
+    "id": "faq_associate_sponsor",
+    "canonical_question": "What are the benefits of Associate Sponsorship?",
+    "category": "sponsorship",
+    "entities": ["Sponsorship"],
+    "question_variants": [
+      "associate sponsor benefits",
+      "what does associate sponsor get",
+      "associate sponsorship price",
+      "what is the associate sponsor price",
+      "cost of associate sponsor"
+    ],
+    "keywords": ["associate sponsor", "20000", "40000", "benefits"],
+    "answer": "**Associate Sponsor (₹20,000 – ₹40,000)** receives website acknowledgement, a 10-minute talk or product demonstration slot, a dedicated stall opportunity, and essential event promotional branding."
+  },
+  {
+    "id": "faq_premium_sponsor",
+    "canonical_question": "What are the benefits of Premium Sponsorship?",
+    "category": "sponsorship",
+    "entities": ["Sponsorship"],
+    "question_variants": [
+      "premium sponsor benefits",
+      "what does premium sponsor get",
+      "premium sponsorship price",
+      "what is the premium sponsor price",
+      "cost of premium sponsor"
+    ],
+    "keywords": ["premium sponsor", "50000", "75000", "benefits"],
+    "answer": "**Premium Sponsor (₹50,000 – ₹75,000)** receives YouTube promotions, tags and logos across social media posts, a 10-minute talk or demonstration slot, and multi-channel promotional branding."
+  },
+  {
+    "id": "faq_exclusive_sponsor",
+    "canonical_question": "What are the benefits of Exclusive Sponsorship?",
+    "category": "sponsorship",
+    "entities": ["Sponsorship"],
+    "question_variants": [
+      "exclusive sponsor benefits",
+      "what does exclusive sponsor get",
+      "exclusive sponsorship price",
+      "what is the exclusive sponsor price",
+      "cost of exclusive sponsor"
+    ],
+    "keywords": ["exclusive sponsor", "75000", "120000", "benefits"],
+    "answer": "**Exclusive Sponsor (₹75,000 – ₹1,20,000)** receives YouTube promotions, tags and logos on social media posts, social reels and quiz mentions, a 10–15 minute talk/demo slot, a 5–10 minute award ceremony presence, and a dedicated mention in the opening speech."
+  },
+  {
+    "id": "faq_title_sponsor",
+    "canonical_question": "What are the benefits of Title Sponsorship?",
+    "category": "sponsorship",
+    "entities": ["Sponsorship"],
+    "question_variants": [
+      "title sponsor benefits",
+      "what does title sponsor get",
+      "title sponsorship price",
+      "what is the title sponsor price",
+      "cost of title sponsor",
+      "highest sponsorship tier"
+    ],
+    "keywords": ["title sponsor", "120000", "180000", "maximum visibility", "benefits"],
+    "answer": "**Title Sponsor (₹1,20,000 – ₹1,80,000)** receives premier branding and association: YouTube promotions, social media tags/logos, reels and quiz mentions, talk/demo slot, award ceremony presence, opening speech mention, logos on participant ID cards, badges, and certificates, prominent logo on event banners, free survey platform access, exclusive social campaigns, and website-sponsored content."
+  },
+  {
+    "id": "faq_previous_sponsors",
+    "canonical_question": "Who are the previous sponsors of Equinox / CIE?",
+    "category": "sponsorship",
+    "entities": ["Sponsorship"],
+    "question_variants": [
+      "previous sponsors",
+      "who are the previous sponsors",
+      "past sponsors",
+      "who sponsored equinox previously",
+      "which companies sponsor cie",
+      "past partners"
+    ],
+    "keywords": ["previous sponsors", "past sponsors", "geeksforgeeks", "cisco", "codegnan", "figma"],
+    "answer": "Previous sponsors and partners include **GeeksforGeeks**, **Cisco thingQbator**, **TechThrill**, **Supraja Technologies**, **Friends of Figma Hyderabad**, **The Product Folks**, and **Codegnan**."
+  },
+  {
+    "id": "faq_contact_info",
+    "canonical_question": "How can I contact the Equinox 2.0 team?",
+    "category": "contact",
+    "entities": ["Contact"],
+    "question_variants": [
+      "who can i contact",
+      "who should i contact",
+      "who should i contact for equinox",
+      "contact details",
+      "contact info",
+      "equinox contact number",
+      "give me the equinox contact number",
+      "contact number",
+      "phone number",
+      "student coordinators",
+      "who are the coordinators",
+      "contact evaru",
+      "help desk contact",
+      "whom to reach out"
+    ],
+    "keywords": ["contact", "email", "phone", "number", "coordinators", "shyam", "sanjana", "mahima", "adithya"],
+    "answer": "You can contact the Equinox 2.0 organizing team via:\n• **Email**: cie@mlrinstitutions.ac.in\n• **Website**: mlritcie.in\n• **Student Coordinators**:\n  - Shyam: +91 93900 06806\n  - Sanjana: +91 82084 99746\n  - Mahima: +91 94933 62006\n  - Adithya: +91 91822 40970"
+  },
+  {
+    "id": "faq_email_address",
+    "canonical_question": "What is the official email address for Equinox / CIE?",
+    "category": "contact",
+    "entities": ["Contact"],
+    "question_variants": [
+      "what is the email",
+      "what is the cie email",
+      "cie email",
+      "equinox email",
+      "email address",
+      "mail id",
+      "official email"
+    ],
+    "keywords": ["email", "mail", "cie@mlrinstitutions.ac.in"],
+    "answer": "The official contact email is **cie@mlrinstitutions.ac.in**."
+  },
+  {
+    "id": "faq_website",
+    "canonical_question": "What is the official website for MLRIT CIE / Equinox?",
+    "category": "contact",
+    "entities": ["Contact"],
+    "question_variants": [
+      "what is the website",
+      "what is the official website",
+      "official website",
+      "cie website",
+      "web address",
+      "url"
+    ],
+    "keywords": ["website", "mlritcie.in", "web"],
+    "answer": "The official website is **mlritcie.in**."
+  },
+  {
+    "id": "faq_address",
+    "canonical_question": "What is the physical address of MLRIT CIE?",
+    "category": "contact",
+    "entities": ["Contact"],
+    "question_variants": [
+      "what is the address",
+      "where is cie located",
+      "physical address",
+      "postal address",
+      "address of mlrit"
+    ],
+    "keywords": ["address", "dundigal", "hyderabad", "500043", "telangana"],
+    "answer": "Centre for Innovation and Entrepreneurship, MLR Institute of Technology, Dundigal Police Station Road, Hyderabad – 500 043, Telangana, India."
+  },
+  {
+    "id": "faq_registration_fee",
+    "canonical_question": "What is the registration fee for Equinox 2.0?",
+    "category": "unsupported",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "what is the registration fee",
+      "what is the registration fee for equinox",
+      "how much is the ticket",
+      "is equinox free",
+      "entry fee for equinox",
+      "registration cost",
+      "ticket price"
+    ],
+    "keywords": ["fee", "price", "cost", "ticket", "free", "registration fee"],
+    "answer": "The registration fee details are not available in the current Equinox information. Please contact the coordinators at cie@mlrinstitutions.ac.in or +91 93900 06806 for registration updates."
+  },
+  {
+    "id": "faq_registration_deadline",
+    "canonical_question": "What is the registration deadline for Equinox 2.0?",
+    "category": "unsupported",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "what is the registration deadline",
+      "when is the last date to register",
+      "last date for registration",
+      "registration cutoff",
+      "when does registration close"
+    ],
+    "keywords": ["deadline", "last date", "cutoff", "registration close"],
+    "answer": "The registration deadline is not specified in the available Equinox information. Please check with the organizers at cie@mlrinstitutions.ac.in or visit mlritcie.in."
+  },
+  {
+    "id": "faq_prizes_money",
+    "canonical_question": "What is the prize money for competitions at Equinox?",
+    "category": "unsupported",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "what is the prize pool",
+      "what is the prize money for competitions",
+      "how much is the prize money",
+      "cash prizes for crossroads",
+      "cash prize for ipl auction",
+      "prize amount",
+      "cash reward"
+    ],
+    "keywords": ["prize", "prizes", "cash", "prize pool", "reward"],
+    "answer": "Specific prize amounts and cash pools are not listed in the available Equinox material."
+  },
+  {
+    "id": "faq_schedule_timings",
+    "canonical_question": "What is the exact schedule or timetable for Equinox?",
+    "category": "unsupported",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "what is the exact schedule",
+      "what is the exact hour by hour timetable",
+      "timetable for day 1",
+      "schedule of day 2",
+      "what time does spotlight start",
+      "what time does ipl auction start",
+      "timing of events"
+    ],
+    "keywords": ["timetable", "exact time", "start time", "hour", "agenda"],
+    "answer": "The detailed hour-by-hour schedule and individual sub-event timings are not specified in the current Equinox material; the summit takes place across 30–31 October."
+  },
+  {
+    "id": "faq_eligibility_branch",
+    "canonical_question": "Who is eligible to participate in Equinox 2.0?",
+    "category": "unsupported",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "who is eligible",
+      "can first year students participate",
+      "is it open to other colleges",
+      "branch restrictions",
+      "eligibility criteria"
+    ],
+    "keywords": ["eligibility", "who can join", "1st year", "branch", "criteria"],
+    "answer": "Specific branch or year eligibility restrictions are not detailed in the available Equinox material; the E-Summit is designed for students interested in entrepreneurship, business, and innovation."
+  },
+  {
+    "id": "faq_food_accommodation",
+    "canonical_question": "Is food and accommodation provided at Equinox?",
+    "category": "unsupported",
+    "entities": ["The Equinox 2.0"],
+    "question_variants": [
+      "is food provided",
+      "is lunch included",
+      "accommodation available",
+      "hostel stay for outside students",
+      "is breakfast provided"
+    ],
+    "keywords": ["food", "lunch", "dinner", "accommodation", "stay", "hostel"],
+    "answer": "Information regarding food arrangements and accommodation is not available in the current Equinox material."
+  }
+]

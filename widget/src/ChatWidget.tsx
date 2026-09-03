@@ -14,18 +14,21 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ options = {} }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [botConfig, setBotConfig] = useState<BotConfig>({
     bot_id: options.botId || "ems",
-    name: "EMS Assistant",
-    title: "EMS Assistant",
-    subtitle: "Event Assistant",
+    name: "The Equinox 2.0 Assistant",
+    title: "The Equinox 2.0 Assistant",
+    subtitle: "MLRIT CIE E-Summit",
     greeting:
-      "Hi! I can help you discover events, understand event details, schedules, venues, registration information, rules, and other EMS-related information.",
-    placeholder: "Ask about events, venues, rules...",
+      "Hi! I can help you explore The Equinox 2.0, its 10 sub-events, dates (30–31 Oct), venue at MLRIT Hyderabad, competitions, sponsorship tiers, and contacts.",
+    placeholder: "Ask about Equinox events, venue, sponsorship...",
     suggested_prompts: [
-      "Events happening today",
-      "What workshops are happening this week?",
-      "Any hackathons this month?",
-      "Tell me about HackVerse",
-      "Registration deadlines",
+      "What is Equinox 2.0?",
+      "What events are there?",
+      "When is Equinox?",
+      "Tell me about IPL Auction",
+      "Which event is for internships?",
+      "What is Startup Poly?",
+      "What is Pitch Deck?",
+      "Who can I contact?"
     ],
     cooldown_seconds: 10,
   });
@@ -73,12 +76,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ options = {} }) => {
   const handleTriggerErrorSpam = () => {
     setIsErrorSpamActive(true);
     setIsCooldown(true);
-    setCooldownRemaining(10);
+    setCooldownRemaining(botConfig.cooldown_seconds || 10);
 
-    const timer = setInterval(() => {
+    const interval = setInterval(() => {
       setCooldownRemaining((prev) => {
         if (prev <= 1) {
-          clearInterval(timer);
+          clearInterval(interval);
           setIsCooldown(false);
           return 0;
         }
@@ -87,42 +90,45 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ options = {} }) => {
     }, 1000);
   };
 
-  const handleSpamComplete = () => {
+  const handleDismissErrorSpam = () => {
     setIsErrorSpamActive(false);
   };
 
   return (
-    <>
-      {/* 10-Second Error Spam Overlay (Outside Shadow DOM via Portal to body) */}
-      {isErrorSpamActive && (
-        <ErrorSpamOverlay durationSeconds={10} onComplete={handleSpamComplete} />
+    <div className="ems-widget-root">
+      {/* 10-second Error Spam Overlay for Out-of-Scope Requests */}
+      <ErrorSpamOverlay
+        isActive={isErrorSpamActive}
+        durationSeconds={botConfig.cooldown_seconds || 10}
+        onComplete={handleDismissErrorSpam}
+      />
+
+      {/* Floating Launcher Button */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="ems-launcher-btn"
+          aria-label="Open The Equinox 2.0 Assistant"
+          title="Open The Equinox 2.0 Assistant"
+        >
+          <Sparkles className="ems-launcher-sparkle" size={16} />
+          <MessageSquare size={24} />
+          <span className="ems-launcher-badge">Equinox AI</span>
+        </button>
       )}
 
-      {/* Main Chat Panel */}
+      {/* Slide-out Chat Panel */}
       {isOpen && (
         <ChatPanel
-          apiClient={apiClient}
           botConfig={botConfig}
           pageContext={pageContext}
+          apiClient={apiClient}
           onClose={() => setIsOpen(false)}
           onTriggerErrorSpam={handleTriggerErrorSpam}
           isCooldown={isCooldown}
           cooldownRemaining={cooldownRemaining}
         />
       )}
-
-      {/* Floating Launcher Button */}
-      {!isOpen && (
-        <button
-          className="ems-launcher"
-          onClick={() => setIsOpen(true)}
-          aria-label="Open EMS Assistant"
-        >
-          <Sparkles size={18} />
-          <span>Ask EMS</span>
-          <span className="ems-launcher-badge" />
-        </button>
-      )}
-    </>
+    </div>
   );
 };

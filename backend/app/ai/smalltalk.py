@@ -2,15 +2,15 @@ import re
 from typing import Optional, Tuple
 
 PRELOADED_RESPONSES = {
-    "greeting_morning": "Good morning! 👋 How can I help you with today's or upcoming EMS events?",
-    "greeting_afternoon": "Good afternoon! 👋 How can I help you with EMS events and workshops?",
-    "greeting_evening": "Good evening! 👋 Looking for an event or need information about one?",
-    "greeting_general": "Hey! 👋 I'm the EMS Assistant. Ask me about events, workshops, hackathons, schedules, venues, registrations, or anything related to EMS.",
-    "thanks": "You're welcome! Let me know if you need anything else about EMS events. 😊",
-    "bye": "See you! 👋 Hope you have a great time attending your events.",
-    "identity": "I'm the official EMS Assistant for MLRIT CIE. I can help you discover events, check schedules and venues, understand registration details, team sizes, and official rules.",
-    "capabilities": "I can help you:\n• Discover upcoming workshops, hackathons, seminars, and competitions\n• Check dates, start/end times, and campus venues\n• Understand registration deadlines, fees, eligibility, and team sizes\n• Look up official rules and preparation requirements",
-    "help": "You can ask me things like:\n• *What events are happening today?*\n• *Any workshops this week?*\n• *Tell me about HackVerse.*\n• *Where is the IoT workshop?*\n• *What's the registration deadline?*",
+    "greeting_morning": "Good morning! 👋 How can I help you explore The Equinox 2.0 and its sub-events?",
+    "greeting_afternoon": "Good afternoon! 👋 How can I assist you with The Equinox 2.0 at MLRIT?",
+    "greeting_evening": "Good evening! 👋 Looking for events, competitions, or sponsorship details at The Equinox 2.0?",
+    "greeting_general": "Hey! 👋 I'm the Equinox 2.0 Assistant. Ask me about sub-events, dates (30–31 Oct), venue at MLRIT, competitions, sponsorship packages, or contacts.",
+    "thanks": "You're welcome! Let me know if you need anything else regarding The Equinox 2.0. 😊",
+    "bye": "See you! 👋 Look forward to seeing you at The Equinox 2.0 on 30–31 October at MLRIT.",
+    "identity": "I'm the official AI Assistant for The Equinox 2.0, the 2-day flagship E-Summit hosted by the Centre for Innovation & Entrepreneurship (CIE) at MLRIT Hyderabad.",
+    "capabilities": "I can help you:\n• Discover the 10 sub-events (Spotlight, Crossroads, Startup Expo, Brand Battles, IPL Auction, Hustle Mania, Internship Drive, Startup Poly, E-Cell Meet, Pitch Deck)\n• Check event dates (30–31 October) and venue at MLRIT Hyderabad\n• Understand sponsorship tiers (Associate, Premium, Exclusive, Title)\n• Look up MLRIT-CIE details and student coordinator contact information",
+    "help": "You can ask me things like:\n• *What is Equinox 2.0?*\n• *What events are there?*\n• *When is Equinox?*\n• *Tell me about IPL Auction.*\n• *Which event is like Monopoly?*\n• *Which event offers internships?*\n• *What sponsorship packages are available?*\n• *Who can I contact?*",
 }
 
 
@@ -18,23 +18,19 @@ def check_smalltalk_and_respond(message: str) -> Tuple[bool, Optional[str]]:
     """
     Check if a message is purely a basic conversational message.
     Returns (is_pure_smalltalk, preloaded_response).
-    If the message contains both greeting/smalltalk AND an actual EMS query (e.g. 'hello, what events are today?'),
-    returns (False, None) so it proceeds through the full RAG pipeline.
     """
     clean = message.strip().lower()
-    # Strip common trailing punctuation
     clean = re.sub(r"[?!.,]+$", "", clean).strip()
 
-    # Check for meaningful EMS query indicators
-    ems_query_indicators = [
-        r"\b(event|events|hackathon|workshop|seminar|competition|ctf|bootcamp|fest)\b",
-        r"\b(today|tomorrow|this week|next week|this month|weekend|schedule|timing|date)\b",
-        r"\b(venue|where|location|room|lab|auditorium)\b",
-        r"\b(register|registration|deadline|fee|eligibility|team|team size|prize|rules)\b",
-        r"\b(hackverse|iot|gen\s*ai|generative|ai|robotics|cybersecurity)\b",
+    # If the message contains specific Equinox or sub-event inquiry keywords, it's not pure small talk
+    equinox_query_indicators = [
+        r"\b(equinox|spotlight|crossroads|startup expo|brand battles|ipl auction|hustle mania|internship drive|startup poly|e-cell meet|pitch deck)\b",
+        r"\b(date|dates|october|30|31|venue|location|where|address|hyderabad|mlrit|cie)\b",
+        r"\b(sponsor|sponsorship|package|tier|price|cost|contact|email|phone|coordinators)\b",
+        r"\b(monopoly|internship|internships|pitch|pitching|case study|brand debate|auction)\b",
     ]
 
-    has_real_query = any(re.search(pattern, clean) for pattern in ems_query_indicators)
+    has_real_query = any(re.search(pattern, clean) for pattern in equinox_query_indicators)
     if has_real_query:
         return False, None
 

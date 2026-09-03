@@ -3,248 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HackVerse 2026 - MLRIT EMS</title>
+  <title>Startup Poly — The Equinox 2.0 Sub-Event</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-main);
-    }
-    .logo-badge {
-      background: var(--primary);
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 6px 12px;
-      border-radius: 10px;
-    }
-    .logo-text h1 { font-size: 18px; font-weight: 800; }
-    .back-link {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 32px auto;
-      padding: 0 24px;
-      flex: 1;
-    }
-    .event-header {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 24px;
-    }
-    .category-badge {
-      display: inline-block;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      background: #eef2ff;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-    .event-title {
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-    }
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-    }
-    .meta-item h5 {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-    .meta-item p {
-      font-size: 15px;
-      font-weight: 600;
-    }
-    .content-box {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 24px;
-    }
-    .content-box h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text-main);
-    }
-    .content-box p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #334155;
-      margin-bottom: 16px;
-    }
-    .content-box ul {
-      margin-left: 20px;
-      margin-bottom: 16px;
-    }
-    .content-box li {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #334155;
-      margin-bottom: 8px;
-    }
-    footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border);
-      padding: 24px;
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-top: auto;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .heading-font { font-family: 'Space Grotesk', sans-serif; }
   </style>
 </head>
-<body>
-  <header>
-    <div class="nav-container">
-      <a href="/demo/index.html" class="logo">
-        <div class="logo-badge">CIE</div>
-        <div class="logo-text">
-          <h1>EMS Portal</h1>
-        </div>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 sticky top-0 bg-slate-950/85 backdrop-blur-md z-40">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-white">
+        ← Back to Equinox 2.0
       </a>
-      <a href="/demo/index.html" class="back-link">← Back to All Events</a>
+      <button onclick="window.EMSAssistant && window.EMSAssistant.open()" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30">
+        ✨ Ask AI about this sub-event
+      </button>
     </div>
   </header>
 
-  <main class="container">
-    <div class="event-header">
-      <span class="category-badge">Hackathon</span>
-      <h1 class="event-title">HackVerse 2026</h1>
-      <p style="font-size: 16px; color: var(--text-muted);">
-        24-Hour National Hackathon on AI, Healthcare & Sustainable Tech
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+    <!-- Event Banner -->
+    <div class="bg-gradient-to-tr from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-teal-950 text-teal-300 border border-teal-800/50">Business Simulation Game</span>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-950 text-indigo-300 border border-indigo-800/50">The Equinox 2.0 Sub-Event</span>
+      </div>
+      <h1 id="event-title" class="heading-font text-3xl sm:text-5xl font-extrabold text-white tracking-tight">Startup Poly</h1>
+      <p id="event-tagline" class="text-base sm:text-lg text-slate-300 mt-4 max-w-3xl leading-relaxed">
+        A fast-paced business simulation game inspired by Monopoly where participants build startups, compete in dynamic markets, manage company finances, navigate risks, and make strategic decisions based on realistic business situations.
       </p>
-
-      <div class="meta-grid">
-        <div class="meta-item">
-          <h5>Date & Time</h5>
-          <p>Sep 12-13, 2026 (09:00 AM)</p>
-        </div>
-        <div class="meta-item">
-          <h5>Venue</h5>
-          <p>CIE Block Labs (3rd Floor)</p>
-        </div>
-        <div class="meta-item">
-          <h5>Registration Cutoff</h5>
-          <p>Sep 08, 2026 (11:59 PM)</p>
-        </div>
-        <div class="meta-item">
-          <h5>Team Size</h5>
-          <p>2 - 4 Members</p>
-        </div>
+      
+      <div class="mt-8 flex flex-wrap gap-6 text-xs sm:text-sm text-slate-300 pt-6 border-t border-slate-800/80">
+        <div>📅 <span class="font-semibold text-white">30–31 October</span></div>
+        <div>📍 <span class="font-semibold text-white">MLRIT Campus, Hyderabad</span></div>
+        <div>🏛️ <span class="font-semibold text-white">Centre for Innovation & Entrepreneurship (CIE)</span></div>
       </div>
     </div>
 
-    <div class="content-box">
-      <h3>About the Hackathon</h3>
-      <p>
-        HackVerse 2026 brings together over 300 passionate student developers, designers, and innovators across India. 
-        Over 24 continuous hours, teams will build cutting-edge prototypes tackling challenges in Healthcare, Autonomous AI, and Sustainable Energy.
-      </p>
-      <p>
-        Supported by MLRIT Centre for Innovation and Entrepreneurship (CIE), winning teams will receive incubation grants, cloud credits, and direct mentor support.
-      </p>
-    </div>
+    <!-- Content Columns -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-2 space-y-6">
+        <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6">
+          <h2 class="heading-font text-xl font-bold text-white mb-3">About Startup Poly</h2>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Startup Poly challenges participants to navigate the unpredictable journey of building and scaling a company. From managing initial working capital to acquiring key assets and mitigating market downturns, teams experience real entrepreneurial dynamics in an engaging Monopoly-style format.
+          </p>
+        </div>
 
-    <div class="content-box">
-      <h3>Official Rules & Guidelines</h3>
-      <ul>
-        <li>All source code, designs, and hardware prototypes must be created during the official 24-hour sprint.</li>
-        <li>Pre-existing commercial products or plagiarized code will result in immediate disqualification.</li>
-        <li>Open-source libraries, APIs, and frameworks are allowed with clear documentation.</li>
-        <li>Every team must submit a public GitHub repository and present a 3-minute live prototype demo.</li>
-      </ul>
-    </div>
+        <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6">
+          <h2 class="heading-font text-xl font-bold text-white mb-3">Skills Developed</h2>
+          <ul class="text-sm text-slate-300 space-y-2 list-disc list-inside">
+            <li>Financial literacy & cash flow management</li>
+            <li>Risk analysis and strategic business decision-making</li>
+            <li>Market competition and asset negotiation</li>
+            <li>Team collaboration under time pressure</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="content-box">
-      <h3>Prizes & Rewards</h3>
-      <ul>
-        <li><strong>1st Prize:</strong> ₹25,000 Cash + Direct CIE Incubation Grant</li>
-        <li><strong>2nd Prize:</strong> ₹15,000 Cash + Cloud Credits</li>
-        <li><strong>3rd Prize:</strong> ₹10,000 Cash + Prototyping Mentorship</li>
-      </ul>
+      <!-- Quick Action Card -->
+      <div class="space-y-6">
+        <div class="bg-gradient-to-b from-indigo-950/60 to-slate-900 border border-indigo-500/30 rounded-2xl p-6">
+          <h3 class="heading-font text-lg font-bold text-white mb-2">Have Questions?</h3>
+          <p class="text-xs text-indigo-200/80 mb-4">
+            The AI Assistant is synchronized with this sub-event. Ask questions like:
+          </p>
+          <div class="space-y-2 text-xs">
+            <button onclick="askPrompt('What skills do I need for this?')" class="w-full text-left p-2.5 rounded-lg bg-indigo-900/30 hover:bg-indigo-900/50 text-indigo-200 border border-indigo-700/40 transition-all">
+              "What skills do I need for this?"
+            </button>
+            <button onclick="askPrompt('Which other events are like Monopoly?')" class="w-full text-left p-2.5 rounded-lg bg-indigo-900/30 hover:bg-indigo-900/50 text-indigo-200 border border-indigo-700/40 transition-all">
+              "Which other events are like Monopoly?"
+            </button>
+            <button onclick="askPrompt('Who organizes this?')" class="w-full text-left p-2.5 rounded-lg bg-indigo-900/30 hover:bg-indigo-900/50 text-indigo-200 border border-indigo-700/40 transition-all">
+              "Who organizes this?"
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
-  <footer>
-    <p>© 2026 MLRIT Centre for Innovation & Entrepreneurship. All rights reserved.</p>
-  </footer>
-
-  <!-- Embed EMS Assistant Standalone Widget -->
-  <script
-    src="/widget/widget.js"
-    data-api-url="http://localhost:8000"
-    data-bot-id="ems"
-    data-auto-init="true"
-  ></script>
-
+  <!-- Embed Standalone Equinox Assistant Widget -->
+  <script src="/widget/widget.js"></script>
   <script>
-    // Set dynamic page context for the AI Assistant
-    window.addEventListener("DOMContentLoaded", () => {
+    const subEventsMap = {
+      'startup-poly': { name: 'Startup Poly', category: 'Simulation Game' },
+      'ipl-auction': { name: 'IPL Auction', category: 'Cricket Simulation' },
+      'spotlight': { name: 'Spotlight', category: 'Keynotes & Talks' },
+      'crossroads': { name: 'Crossroads', category: 'Case Study' },
+      'startup-expo': { name: 'Startup Expo', category: 'Exhibition' },
+      'brand-battles': { name: 'Brand Battles', category: 'Debate' },
+      'hustle-mania': { name: 'Hustle Mania', category: 'Selling Challenge' },
+      'internship-drive': { name: 'Internship Drive', category: 'Career Drive' },
+      'e-cell-meet': { name: 'E-Cell Meet', category: 'Networking' },
+      'pitch-deck': { name: 'Pitch Deck', category: 'Pitching Platform' }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get('id') || 'startup-poly';
+    const subEvent = subEventsMap[eventId] || subEventsMap['startup-poly'];
+
+    document.addEventListener('DOMContentLoaded', () => {
       if (window.EMSAssistant) {
-        window.EMSAssistant.setContext({
-          pageType: "event",
-          eventId: "hackverse-2026",
-          eventName: "HackVerse 2026",
-          pathname: window.location.pathname
+        window.EMSAssistant.init({
+          botId: 'ems',
+          apiUrl: 'http://localhost:8000',
+          position: 'bottom-right',
+          initialContext: {
+            pageType: 'event',
+            eventId: eventId,
+            eventName: subEvent.name
+          }
         });
-        console.log("[Demo] Page context set for HackVerse 2026");
       }
     });
+
+    function askPrompt(promptText) {
+      if (window.EMSAssistant) {
+        window.EMSAssistant.open();
+        window.EMSAssistant.sendMessage(promptText);
+      }
+    }
   </script>
 </body>
 </html>
