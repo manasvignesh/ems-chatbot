@@ -202,6 +202,75 @@ export const WIDGET_STYLES = `
   text-transform: uppercase;
 }
 
+/* Top Suggested Questions Bar */
+.ems-top-suggestions-bar {
+  background-color: #0d1322;
+  border-bottom: 1px solid #1e293b;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ems-horizontal-suggestions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: #4f46e5 #1e293b;
+}
+
+.ems-horizontal-suggestions::-webkit-scrollbar {
+  height: 5px;
+}
+
+.ems-horizontal-suggestions::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+.ems-horizontal-suggestions::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 4px;
+}
+
+.ems-horizontal-suggestions::-webkit-scrollbar-thumb:hover {
+  background: #6366f1;
+}
+
+.ems-suggestion-chip {
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  padding: 7px 13px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ems-suggestion-chip:hover:not(:disabled) {
+  background-color: #312e81;
+  border-color: #6366f1;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.ems-suggestion-chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Message List */
 .ems-messages {
   flex: 1;
@@ -332,68 +401,6 @@ export const WIDGET_STYLES = `
 
 .ems-card-btn:hover {
   background-color: #4338ca;
-}
-
-/* Horizontal Scrollable Suggestions */
-.ems-horizontal-suggestions {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 8px 4px 14px 4px;
-  margin-top: 6px;
-  width: 100%;
-  scrollbar-width: thin;
-  scrollbar-color: #6366f1 #1e293b;
-}
-
-.ems-horizontal-suggestions::-webkit-scrollbar {
-  height: 6px;
-}
-
-.ems-horizontal-suggestions::-webkit-scrollbar-track {
-  background: #1e293b;
-  border-radius: 4px;
-}
-
-.ems-horizontal-suggestions::-webkit-scrollbar-thumb {
-  background: #4f46e5;
-  border-radius: 4px;
-}
-
-.ems-horizontal-suggestions::-webkit-scrollbar-thumb:hover {
-  background: #6366f1;
-}
-
-.ems-suggestion-chip {
-  flex-shrink: 0;
-  white-space: nowrap;
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  color: #cbd5e1;
-  padding: 8px 14px;
-  border-radius: 9999px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.ems-suggestion-chip:hover:not(:disabled) {
-  background-color: #312e81;
-  border-color: #6366f1;
-  color: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
-}
-
-.ems-suggestion-chip:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 /* Input Area */

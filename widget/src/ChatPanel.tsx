@@ -7,8 +7,6 @@ import {
   RotateCcw,
   Send,
   Sparkles,
-  AlertCircle,
-  HelpCircle,
   Clock,
 } from "lucide-react";
 
@@ -180,50 +178,27 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
         </div>
       )}
 
+      {/* Top Horizontal Suggested Questions Bar */}
+      <div className="ems-top-suggestions-bar">
+        <div className="ems-horizontal-suggestions">
+          {botConfig.suggested_prompts.map((prompt, idx) => (
+            <button
+              key={idx}
+              className="ems-suggestion-chip"
+              onClick={() => handleSend(prompt)}
+              disabled={isCooldown}
+            >
+              ✨ {prompt}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Messages Scroll Area */}
       <div className="ems-messages">
-        {messages.length === 0 ? (
-          <div style={{ padding: "20px 8px 12px 8px", textAlign: "center" }}>
-            <div style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "14px",
-              background: "rgba(79, 70, 229, 0.15)",
-              color: "#818cf8",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 12px auto"
-            }}>
-              <HelpCircle size={26} />
-            </div>
-            <p style={{ fontSize: "13.5px", color: "#cbd5e1", lineHeight: "1.5", marginBottom: "16px" }}>
-              {botConfig.greeting}
-            </p>
-
-            <div style={{ textAlign: "left", marginBottom: "6px" }}>
-              <span style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                Suggested Questions
-              </span>
-            </div>
-
-            {/* Horizontal Scrollable Question Chips */}
-            <div className="ems-horizontal-suggestions">
-              {botConfig.suggested_prompts.map((prompt, idx) => (
-                <button
-                  key={idx}
-                  className="ems-suggestion-chip"
-                  onClick={() => handleSend(prompt)}
-                  disabled={isCooldown}
-                >
-                  ✨ {prompt}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : (
-          messages.map((m) => <Message key={m.id} message={m} />)
-        )}
+        {messages.map((m) => (
+          <Message key={m.id} message={m} />
+        ))}
 
         {/* Typing Loading Indicator */}
         {isLoading && (
