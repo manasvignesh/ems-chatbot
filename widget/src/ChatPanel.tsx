@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MessageItem, PageContext, BotConfig } from "./types";
+import { MessageItem, PageContext, BotConfig, ChatResponse } from "./types";
 import { Message } from "./Message";
 import { ChatApiClient } from "./api";
+import { EquinoxScopeWarning } from "./EquinoxScopeWarning";
 import {
   X,
   RotateCcw,
@@ -15,9 +16,6 @@ interface ChatPanelProps {
   botConfig: BotConfig;
   pageContext: PageContext;
   onClose: () => void;
-  onTriggerErrorSpam: () => void;
-  isCooldown: boolean;
-  cooldownRemaining: number;
 }
 
 export const ChatPanel: React.FC<ChatPanelProps> = ({
@@ -25,9 +23,6 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
   botConfig,
   pageContext,
   onClose,
-  onTriggerErrorSpam,
-  isCooldown,
-  cooldownRemaining,
 }) => {
   const [messages, setMessages] = useState<MessageItem[]>([]);
   const [inputVal, setInputVal] = useState("");
@@ -35,6 +30,23 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
   const [conversationId, setConversationId] = useState<string>(() => {
     return "session-" + Math.random().toString(36).substring(2, 10);
   });
+
+  // Ticket Warning State
+  const [scopeWarning, setScopeWarning] = useState<{
+    isActive: boolean;
+    classificationLevel?: "SUSPICIOUS" | "CLEARLY_OUT_OF_SCOPE";
+    warningType?: "invalid_event_pass" | "suspicious_pass";
+    ticketNumber?: string;
+    durationSeconds?: number;
+    reason?: string;
+    message?: string;
+  }>({
+    isActive: false,
+  });
+
+  const [isCooldown, setIsCooldown] = useState(false);
+  const [cooldownRemaining, setCooldownRemaining] = useState(0);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -44,15 +56,23 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading]);
+  }, [messages, isLoading, scopeWarning]);
 
   const handleResetConversation = () => {
     setMessages([]);
     setConversationId("session-" + Math.random().toString(36).substring(2, 10));
     setInputVal("");
+    setScopeWarning({ isActive: false });
+    setIsCooldown(false);
     if (textareaRef.current) {
       textareaRef.current.focus();
     }
+  };
+
+  const handleDismissWarning = () => {
+    setScopeWarning({ isActive: false });
+    setIsCooldown(false);
+    setCooldownRemaining(0);
   };
 
   const handleSend = async (textToSend?: string) => {
@@ -71,7 +91,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
     setIsLoading(true);
 
     try {
-      const response = await apiClient.sendMessage(
+      const response: ChatResponse = await apiClient.sendMessage(
         text,
         conversationId,
         messages,
@@ -83,7 +103,34 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       }
 
       if (response.status === "out_of_scope") {
-        onTriggerErrorSpam();
+        const isSuspicious = response.classification_level === "SUSPICIOUS";
+        const duration = isSuspicious ? 2.5 : 3.5;
+
+        // Trigger lightweight ticket warning pass
+        setScopeWarning({
+          isActive: true,
+          classificationLevel: isSuspicious ? "SUSPICIOUS" : "CLEARLY_OUT_OF_SCOPE",
+          warningType: response.warning_type || "invalid_event_pass",
+          ticketNumber: response.ticket_number || "EQX-PASS-403",
+          durationSeconds: duration,
+          reason: response.reason,
+          message: response.message || "This assistant is focused on The Equinox 2.0. Ask me about events, dates, sub-events, venue, sponsorship, or contacts.",
+        });
+
+        setIsCooldown(true);
+        setCooldownRemaining(Math.ceil(duration));
+
+        const interval = setInterval(() => {
+          setCooldownRemaining((prev) => {
+            if (prev <= 1) {
+              clearInterval(interval);
+              setIsCooldown(false);
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+
       } else if (response.status === "success" && response.answer) {
         const botMsg: MessageItem = {
           id: "bot-" + Date.now(),
@@ -213,24 +260,29 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
           </div>
         )}
 
+        {/* Inline Equinox Scope Ticket Warning Pass */}
+        {scopeWarning.isActive && (
+          <EquinoxScopeWarning
+            isActive={scopeWarning.isActive}
+            classificationLevel={scopeWarning.classificationLevel}
+            warningType={scopeWarning.warningType}
+            ticketNumber={scopeWarning.ticketNumber}
+            durationSeconds={scopeWarning.durationSeconds}
+            reason={scopeWarning.reason}
+            message={scopeWarning.message}
+            onDismiss={handleDismissWarning}
+          />
+        )}
+
         <div ref={messagesEndRef} />
       </div>
 
       {/* Footer / Input Area */}
-      <div style={{ background: "#0f172a", borderTop: "1px solid #334155" }}>
+      <div style={{ background: "#0b0f19", borderTop: "1px solid #1f293d" }}>
         {isCooldown && (
-          <div style={{
-            background: "rgba(239, 68, 68, 0.15)",
-            borderBottom: "1px solid rgba(239, 68, 68, 0.3)",
-            padding: "6px 14px",
-            fontSize: "11.5px",
-            color: "#fca5a5",
-            display: "flex",
-            alignItems: "center",
-            gap: "6px"
-          }}>
-            <Clock size={13} />
-            <span>Chat paused during cooldown: {cooldownRemaining}s</span>
+          <div className="equinox-cooldown-notice">
+            <Clock size={12} />
+            <span>Pass validation paused ({cooldownRemaining}s)</span>
           </div>
         )}
 
@@ -240,7 +292,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
             className="ems-textarea"
             placeholder={
               isCooldown
-                ? "Chat paused during cooldown..."
+                ? "Chat paused during ticket validation..."
                 : botConfig.placeholder || "Ask about Equinox events, venue, sponsorship..."
             }
             rows={1}

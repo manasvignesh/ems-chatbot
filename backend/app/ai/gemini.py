@@ -2,7 +2,7 @@ import json
 from typing import Any, Dict, List, Optional
 from app.core.config import settings
 from app.core.logging import logger
-from app.ai.prompts import EMS_SYSTEM_PROMPT
+from app.ai.prompts import EMS_SYSTEM_PROMPT, SCOPE_CLASSIFIER_PROMPT
 
 # Attempt to import google-genai
 try:
@@ -61,7 +61,7 @@ class GeminiClient:
     async def generate_structured_json(
         self,
         prompt: str,
-        system_instruction: str,
+        system_instruction: str = SCOPE_CLASSIFIER_PROMPT,
         temperature: float = 0.0,
     ) -> Dict[str, Any]:
         """Generate structured JSON output from Gemini."""
@@ -88,9 +88,17 @@ class GeminiClient:
     def _simulate_gemini_response(self, prompt: str) -> str:
         """Simulate a grounded response for local testing and development."""
         prompt_lower = prompt.lower()
-        if "no direct ems documents" in prompt_lower or "no matching" in prompt_lower:
-            return "I couldn't find any specific event information matching your query in EMS. Could you please specify an event name or category?"
-        
+        if "equinox" in prompt_lower or "summit" in prompt_lower:
+            return "The Equinox 2.0 is a 2-day flagship E-Summit scheduled for 30–31 October at MLR Institute of Technology (MLRIT), Hyderabad, organized by Centre for Innovation & Entrepreneurship (CIE)."
+        if "ipl" in prompt_lower or "auction" in prompt_lower:
+            return "The IPL Auction is a simulated cricket auction sub-event at The Equinox 2.0 where participants manage budgets and bid strategically for players."
+        if "monopoly" in prompt_lower or "startup poly" in prompt_lower:
+            return "Startup Poly is a Monopoly-inspired fast-paced business simulation sub-event at The Equinox 2.0."
+        if "internship" in prompt_lower or "hiring" in prompt_lower:
+            return "The Internship Drive connects students directly with hiring startups and companies during The Equinox 2.0."
+        if "pitch" in prompt_lower:
+            return "Pitch Deck is the flagship pitching competition at The Equinox 2.0 where student founders pitch to investors and mentors."
+
         return (
             "Here is the event information from EMS:\n\n"
             "Based on our records, the event details and schedules are listed above. "
@@ -98,24 +106,13 @@ class GeminiClient:
         )
 
     def _simulate_structured_classification(self, prompt: str) -> Dict[str, Any]:
-        """Heuristic JSON classification fallback."""
-        prompt_lower = prompt.lower()
-        out_of_scope_keywords = [
-            "ipl", "cricket", "movie", "stock", "weather", "president",
-            "malware", "celebrity", "assignment", "homework", "chemistry",
-            "calculus", "physics", "recipe"
-        ]
-        if any(w in prompt_lower for w in out_of_scope_keywords):
-            return {
-                "classification": "OUT_OF_SCOPE",
-                "confidence": 0.95,
-                "reason": "Query is about unrelated general topics or homework assignments."
-            }
-        return {
-            "classification": "IN_SCOPE",
-            "confidence": 0.90,
-            "reason": "Query is related to college events or EMS."
-        }
+        """Local classifier fallback when Gemini client is not initialized."""
+        p_lower = prompt.lower()
+        if any(k in p_lower for k in ["equinox", "startup", "auction", "pitch", "monopoly", "internship", "selling", "debate", "speaker", "talks"]):
+            return {"classification": "IN_SCOPE", "confidence": 0.95, "reason": "Query mentions Equinox 2.0 activity."}
+        if any(k in p_lower for k in ["cricket", "score", "weather", "movie", "bitcoin", "president", "homework", "python"]):
+            return {"classification": "CLEARLY_OUT_OF_SCOPE", "confidence": 0.96, "reason": "Query matches out-of-scope domain."}
+        return {"classification": "AMBIGUOUS", "confidence": 0.50, "reason": "Borderline query."}
 
 
 gemini_client = GeminiClient()

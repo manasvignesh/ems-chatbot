@@ -45,7 +45,7 @@ class Settings(BaseSettings):
     EMS_PUBLIC_API_URL: str = "https://ems.mlritcie.in/api/public/events"
 
     # Guardrails & Precision RAG settings
-    OUT_OF_SCOPE_COOLDOWN_SECONDS: int = 10
+    OUT_OF_SCOPE_COOLDOWN_SECONDS: int = 3
     MAX_CONVERSATION_HISTORY_MESSAGES: int = 6
     MAX_MESSAGE_CHAR_LENGTH: int = 1000
     MAX_RETRIEVAL_CHUNKS: int = 6

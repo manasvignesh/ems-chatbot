@@ -45,10 +45,17 @@ class SourceReference(BaseModel):
 
 
 class ScopeClassificationResult(BaseModel):
-    """Structured scope evaluation."""
-    classification: Literal["IN_SCOPE", "AMBIGUOUS", "OUT_OF_SCOPE"]
+    """Structured scope evaluation with granular classification levels."""
+    classification: Literal[
+        "IN_SCOPE",
+        "LIKELY_IN_SCOPE",
+        "AMBIGUOUS",
+        "SUSPICIOUS",
+        "CLEARLY_OUT_OF_SCOPE"
+    ]
     confidence: float = Field(ge=0.0, le=1.0)
     reason: str
+    clarification_prompt: Optional[str] = None
 
 
 class ChatResponseSuccess(BaseModel):
@@ -62,8 +69,12 @@ class ChatResponseSuccess(BaseModel):
 class ChatResponseOutOfScope(BaseModel):
     status: Literal["out_of_scope"] = "out_of_scope"
     conversation_id: str
-    cooldown_seconds: int = 10
-    reason: Optional[str] = "Query is outside the scope of EMS events."
+    classification_level: Literal["SUSPICIOUS", "CLEARLY_OUT_OF_SCOPE"] = "CLEARLY_OUT_OF_SCOPE"
+    warning_type: str = "invalid_event_pass"
+    ticket_number: Optional[str] = "EQX-PASS-403"
+    cooldown_seconds: int = 3
+    reason: Optional[str] = "Query is outside the scope of The Equinox 2.0."
+    message: Optional[str] = "This assistant is focused on The Equinox 2.0. Ask me about events, dates, sub-events, venue, sponsorship, or contacts."
 
 
 class ChatResponseError(BaseModel):

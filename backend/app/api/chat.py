@@ -1,32 +1,59 @@
 import time
 import uuid
+import random
 from typing import Dict, List, Optional, Union
-from fastapi import APIRouter, HTTPException, Request, Response, status
-
-from app.ai.classifier import scope_classifier
-from app.ai.faq_matcher import faq_matcher
-from app.ai.gemini import gemini_client
-from app.ai.prompts import build_guarded_prompt
-from app.ai.query_analysis import query_analyzer
-from app.ai.smalltalk import check_smalltalk_and_respond
-from app.core.config import settings
-from app.core.logging import logger
-from app.core.security import rate_limiter, sanitize_text
-from app.core.time import get_current_time
+from fastapi import APIRouter, HTTPException, Request, status
 from app.models.chat import (
     ChatRequest,
-    ChatResponseError,
-    ChatResponseOutOfScope,
     ChatResponseSuccess,
+    ChatResponseOutOfScope,
+    ChatResponseError,
     EventCard,
     SourceReference,
 )
+from app.ai.classifier import scope_classifier
+from app.ai.query_analysis import query_analyzer
+from app.ai.smalltalk import check_smalltalk_and_respond
+from app.ai.faq_matcher import faq_matcher
+from app.ai.gemini import gemini_client
+from app.ai.prompts import build_guarded_prompt
 from app.rag.hybrid_search import hybrid_search_engine
 from app.services.conversation import conversation_manager
+from app.core.config import settings
+from app.core.logging import logger
+from app.core.time import get_current_time
 
-router = APIRouter(tags=["Chat"])
+router = APIRouter()
 
-# Development metrics tracker
+
+def sanitize_text(text: str, max_chars: int = settings.MAX_MESSAGE_CHAR_LENGTH) -> str:
+    """Sanitize user input string."""
+    if not text:
+        return ""
+    clean = "".join(ch for ch in text if ch.isprintable() or ch in "\n\r\t")
+    return clean.strip()[:max_chars]
+
+
+# Simple token bucket in-memory rate limiter per IP / session
+class SimpleRateLimiter:
+    def __init__(self, limit_per_min: int = settings.RATE_LIMIT_REQUESTS_PER_MINUTE):
+        self.limit = limit_per_min
+        self.requests: Dict[str, List[float]] = {}
+
+    def is_rate_limited(self, key: str) -> bool:
+        now = time.time()
+        window_start = now - 60.0
+        reqs = self.requests.get(key, [])
+        valid_reqs = [t for t in reqs if t > window_start]
+        self.requests[key] = valid_reqs
+        if len(valid_reqs) >= self.limit:
+            return True
+        self.requests[key].append(now)
+        return False
+
+rate_limiter = SimpleRateLimiter()
+
+# Track Gemini avoidance metrics
 USAGE_METRICS = {
     "total_queries": 0,
     "small_talk_queries": 0,
@@ -41,7 +68,7 @@ USAGE_METRICS = {
 
 @router.get("/config/{bot_id}")
 async def get_bot_config(bot_id: str):
-    """Return bot metadata and Equinox 2.0 suggested questions."""
+    """Fetch initial bot configuration and branding."""
     return {
         "bot_id": bot_id,
         "name": "The Equinox 2.0 Assistant",
@@ -168,21 +195,41 @@ async def chat_endpoint(request: Request, payload: ChatRequest):
     has_active_conv = len(conversation_manager.get_history(conversation_id)) > 0
     conversation_manager.add_message(conversation_id, "user", clean_message)
 
-    # 6. Layered Scope & Guardrail Classification
+    # 6. Layered Scope & Guardrail Classification (5 Levels)
     scope_eval = await scope_classifier.classify(
         message=clean_message,
         page_context=payload.page_context,
         has_active_conversation=has_active_conv,
     )
 
-    if scope_eval.classification == "OUT_OF_SCOPE":
+    # Handle CLEARLY_OUT_OF_SCOPE and SUSPICIOUS
+    if scope_eval.classification in ("CLEARLY_OUT_OF_SCOPE", "SUSPICIOUS"):
         USAGE_METRICS["out_of_scope_queries"] += 1
-        logger.info(f"[Answer Mode: OUT_OF_SCOPE] query='{clean_message}' (reason: {scope_eval.reason})")
+        ticket_id = f"EQX-PASS-{random.randint(1000, 9999)}"
+        is_suspicious = scope_eval.classification == "SUSPICIOUS"
+
+        logger.info(f"[Answer Mode: {scope_eval.classification}] query='{clean_message}' (reason: {scope_eval.reason})")
         return ChatResponseOutOfScope(
             status="out_of_scope",
             conversation_id=conversation_id,
-            cooldown_seconds=settings.OUT_OF_SCOPE_COOLDOWN_SECONDS,
+            classification_level="SUSPICIOUS" if is_suspicious else "CLEARLY_OUT_OF_SCOPE",
+            warning_type="suspicious_pass" if is_suspicious else "invalid_event_pass",
+            ticket_number=ticket_id,
+            cooldown_seconds=2 if is_suspicious else 3,
             reason=scope_eval.reason,
+            message="This assistant is focused on The Equinox 2.0. Ask me about events, dates, sub-events, venue, sponsorship, or contacts."
+        )
+
+    # Handle AMBIGUOUS with gentle clarification prompt (NO warning)
+    if scope_eval.classification == "AMBIGUOUS" and scope_eval.clarification_prompt:
+        conversation_manager.add_message(conversation_id, "assistant", scope_eval.clarification_prompt)
+        logger.info(f"[Answer Mode: AMBIGUOUS_CLARIFICATION] query='{clean_message}'")
+        return ChatResponseSuccess(
+            status="success",
+            conversation_id=conversation_id,
+            answer=scope_eval.clarification_prompt,
+            sources=[],
+            cards=[],
         )
 
     # 7. Query Understanding & Typo Normalization

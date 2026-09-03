@@ -3,7 +3,6 @@ import { BotConfig, PageContext, WidgetInitOptions } from "./types";
 import { ChatApiClient } from "./api";
 import { pageContextManager } from "./context";
 import { ChatPanel } from "./ChatPanel";
-import { ErrorSpamOverlay } from "./ErrorSpam";
 import { Bot, Sparkles } from "lucide-react";
 
 interface ChatWidgetProps {
@@ -30,16 +29,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ options = {} }) => {
       "What is Pitch Deck?",
       "Who can I contact?"
     ],
-    cooldown_seconds: 10,
+    cooldown_seconds: 3,
   });
 
   const [pageContext, setPageContext] = useState<PageContext>(() =>
     pageContextManager.getContext()
   );
-
-  const [isErrorSpamActive, setIsErrorSpamActive] = useState(false);
-  const [isCooldown, setIsCooldown] = useState(false);
-  const [cooldownRemaining, setCooldownRemaining] = useState(10);
 
   const [apiClient] = useState(
     () => new ChatApiClient(options.apiUrl || "http://localhost:8000", options.botId || "ems")
@@ -73,36 +68,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ options = {} }) => {
     };
   }, [apiClient]);
 
-  const handleTriggerErrorSpam = () => {
-    setIsErrorSpamActive(true);
-    setIsCooldown(true);
-    setCooldownRemaining(botConfig.cooldown_seconds || 10);
-
-    const interval = setInterval(() => {
-      setCooldownRemaining((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          setIsCooldown(false);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  };
-
-  const handleDismissErrorSpam = () => {
-    setIsErrorSpamActive(false);
-  };
-
   return (
     <div className="ems-widget-root">
-      {/* 10-second Error Spam Overlay for Out-of-Scope Requests */}
-      <ErrorSpamOverlay
-        isActive={isErrorSpamActive}
-        durationSeconds={botConfig.cooldown_seconds || 10}
-        onComplete={handleDismissErrorSpam}
-      />
-
       {/* Floating Futuristic Cyber Robot Launcher Button */}
       {!isOpen && (
         <button
@@ -126,16 +93,13 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ options = {} }) => {
         </button>
       )}
 
-      {/* Slide-out Chat Panel */}
+      {/* Slide-out Chat Panel with EquinoxScopeWarning */}
       {isOpen && (
         <ChatPanel
           botConfig={botConfig}
           pageContext={pageContext}
           apiClient={apiClient}
           onClose={() => setIsOpen(false)}
-          onTriggerErrorSpam={handleTriggerErrorSpam}
-          isCooldown={isCooldown}
-          cooldownRemaining={cooldownRemaining}
         />
       )}
     </div>

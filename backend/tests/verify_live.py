@@ -13,6 +13,14 @@ tests = [
     ('which event is like monopoly?', 'Startup Poly'),
     ('who can i contact?', 'cie@mlrinstitutions.ac.in'),
     ('What is the registration fee for Equinox?', 'not available in the current Equinox information'),
+    # Shorthand tests
+    ('auction', 'IPL Auction'),
+    ('pitch', 'Pitch Deck'),
+    ('monopoly', 'Startup Poly'),
+    ('internship', 'Internship Drive'),
+    ('selling', 'Hustle Mania'),
+    ('brand debate', 'Brand Battles'),
+    ('business case', 'Crossroads'),
 ]
 
 print('=== LIVE HTTP EQUINOX TESTS ===')
@@ -21,13 +29,15 @@ for q, expected in tests:
     ans = res.get('answer', '')
     print(f'Q: {q}')
     print(f'A: {ans[:90]}...')
+    assert res.get('status') == 'success', f'Failed on {q}: got status {res.get("status")}'
     assert expected.lower() in ans.lower(), f'Failed on {q}: missing {expected}'
 
-# Out of scope test
+# Out of scope test with ticket warning
 res_oos = client.post('/api/chat', json={'bot_id':'ems', 'message': "Who won yesterday's IPL match?"}).json()
 print("\nQ: Who won yesterday's IPL match?")
-print('Status:', res_oos.get('status'), 'Cooldown:', res_oos.get('cooldown_seconds'))
+print('Status:', res_oos.get('status'), 'Ticket:', res_oos.get('ticket_number'), 'Cooldown:', res_oos.get('cooldown_seconds'))
 assert res_oos.get('status') == 'out_of_scope'
+assert 'ticket_number' in res_oos
 
 # Metrics check
 metrics = client.get('/api/metrics').json()

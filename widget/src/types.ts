@@ -42,16 +42,21 @@ export interface BotConfig {
   cooldown_seconds: number;
 }
 
-export interface ChatApiResponse {
+export interface ChatResponse {
   status: "success" | "out_of_scope" | "error";
   conversation_id?: string;
   answer?: string;
   sources?: SourceReference[];
   cards?: EventCardData[];
+  classification_level?: "IN_SCOPE" | "LIKELY_IN_SCOPE" | "AMBIGUOUS" | "SUSPICIOUS" | "CLEARLY_OUT_OF_SCOPE";
+  warning_type?: "invalid_event_pass" | "suspicious_pass";
+  ticket_number?: string;
   cooldown_seconds?: number;
   reason?: string;
   message?: string;
 }
+
+export type ChatApiResponse = ChatResponse;
 
 export interface WidgetInitOptions {
   apiUrl?: string;

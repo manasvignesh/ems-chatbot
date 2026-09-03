@@ -48,4 +48,5 @@ async def test_chat_out_of_scope_rejection():
         assert resp.status_code == 200
         data = resp.json()
         assert data["status"] == "out_of_scope"
-        assert data["cooldown_seconds"] == 10
+        assert data["cooldown_seconds"] in (2, 3)
+        assert "ticket_number" in data

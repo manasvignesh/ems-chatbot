@@ -344,7 +344,7 @@ export const WIDGET_STYLES = `
   cursor: not-allowed;
 }
 
-/* Message List */
+/* Messages Scroll Area */
 .ems-messages {
   flex: 1;
   overflow-y: auto;
@@ -426,6 +426,173 @@ export const WIDGET_STYLES = `
   color: #818cf8;
 }
 
+/* =======================================================
+   Equinox Event Ticket / Pass Warning Component Styles
+   ======================================================= */
+.equinox-ticket-wrapper {
+  margin: 12px 0 8px 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: ems-ticket-slide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #111827;
+  border: 1px solid #374151;
+  position: relative;
+}
+
+.equinox-ticket-wrapper.out-of-scope {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: linear-gradient(180deg, #1f131a 0%, #111827 100%);
+}
+
+.equinox-ticket-wrapper.suspicious {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: linear-gradient(180deg, #1f1a13 0%, #111827 100%);
+}
+
+.equinox-ticket-header {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.equinox-ticket-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #c7d2fe;
+}
+
+.equinox-ticket-sparkle {
+  color: #818cf8;
+}
+
+.equinox-ticket-id {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-family: monospace;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.equinox-ticket-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.equinox-ticket-close:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.equinox-ticket-perforation-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.equinox-notch-left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.equinox-notch-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.equinox-dashed-perforation {
+  flex: 1;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+  margin: 0 14px;
+}
+
+.equinox-ticket-body {
+  padding: 12px 14px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.equinox-stamp-badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.badge-invalid {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1.5px solid #ef4444;
+  color: #f87171;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+.badge-suspicious {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1.5px solid #f59e0b;
+  color: #fbbf24;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+.equinox-ticket-message {
+  font-size: 12.5px;
+  color: #e2e8f0;
+  line-height: 1.45;
+}
+
+.equinox-ticket-progress-track {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  width: 100%;
+  overflow: hidden;
+}
+
+.equinox-ticket-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #ef4444);
+  transition: width 0.05s linear;
+}
+
+.equinox-cooldown-notice {
+  background: rgba(99, 102, 241, 0.12);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 6px 14px;
+  font-size: 11.5px;
+  color: #c7d2fe;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 /* Event Cards */
 .ems-cards-container {
   display: flex;
@@ -479,8 +646,8 @@ export const WIDGET_STYLES = `
 /* Input Area */
 .ems-input-area {
   padding: 14px 16px;
-  background-color: #0f172a;
-  border-top: 1px solid var(--ems-border);
+  background-color: #0b0f19;
+  border-top: 1px solid #1f293d;
   display: flex;
   align-items: flex-end;
   gap: 8px;
@@ -568,6 +735,11 @@ export const WIDGET_STYLES = `
 @keyframes ems-slide-up {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ems-ticket-slide {
+  from { opacity: 0; transform: translateY(-10px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes ems-fade-in {
