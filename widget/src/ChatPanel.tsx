@@ -183,7 +183,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       {/* Messages Scroll Area */}
       <div className="ems-messages">
         {messages.length === 0 ? (
-          <div style={{ padding: "16px 8px", textAlign: "center" }}>
+          <div style={{ padding: "20px 8px 12px 8px", textAlign: "center" }}>
             <div style={{
               width: "48px",
               height: "48px",
@@ -197,18 +197,24 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
             }}>
               <HelpCircle size={26} />
             </div>
-            <p style={{ fontSize: "13px", color: "#cbd5e1", lineHeight: "1.5", marginBottom: "16px" }}>
+            <p style={{ fontSize: "13.5px", color: "#cbd5e1", lineHeight: "1.5", marginBottom: "16px" }}>
               {botConfig.greeting}
             </p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", textAlign: "left" }}>
+            <div style={{ textAlign: "left", marginBottom: "6px" }}>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                Suggested Questions
+              </span>
+            </div>
+
+            {/* Horizontal Scrollable Question Chips */}
+            <div className="ems-horizontal-suggestions">
               {botConfig.suggested_prompts.map((prompt, idx) => (
                 <button
                   key={idx}
                   className="ems-suggestion-chip"
                   onClick={() => handleSend(prompt)}
                   disabled={isCooldown}
-                  style={{ textAlign: "left", width: "100%", padding: "8px 12px" }}
                 >
                   ✨ {prompt}
                 </button>
