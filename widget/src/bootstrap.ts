@@ -58,6 +58,11 @@ export function toggleWidget() {
   window.dispatchEvent(new CustomEvent("ems-assistant:toggle"));
 }
 
+export function sendMessage(text: string) {
+  openWidget();
+  window.dispatchEvent(new CustomEvent("ems-assistant:send-message", { detail: { text } }));
+}
+
 export function setPageContext(context: Partial<PageContext>) {
   pageContextManager.setContext(context);
 }

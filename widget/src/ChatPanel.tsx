@@ -85,7 +85,6 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       }
 
       if (response.status === "out_of_scope") {
-        // Trigger the intentional 10-second error spam effect
         onTriggerErrorSpam();
       } else if (response.status === "success" && response.answer) {
         const botMsg: MessageItem = {
@@ -110,7 +109,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       const errorMsg: MessageItem = {
         id: "err-" + Date.now(),
         role: "assistant",
-        content: "Network error. Please ensure the backend server is running.",
+        content: e.message || "Network error. Please ensure the backend server is running.",
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -118,6 +117,25 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const handleCustomSend = (e: any) => {
+      if (e.detail && e.detail.text) {
+        handleSend(e.detail.text);
+      }
+    };
+    const handleCustomReset = () => {
+      handleResetConversation();
+    };
+
+    window.addEventListener("ems-assistant:send-message", handleCustomSend);
+    window.addEventListener("ems-assistant:reset", handleCustomReset);
+
+    return () => {
+      window.removeEventListener("ems-assistant:send-message", handleCustomSend);
+      window.removeEventListener("ems-assistant:reset", handleCustomReset);
+    };
+  }, [conversationId, messages, pageContext, isLoading, isCooldown]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -130,25 +148,25 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
     <div className="ems-chat-panel">
       {/* Header */}
       <div className="ems-header">
-        <div className="ems-header-title">
-          <div className="ems-header-icon">
-            <Sparkles size={20} />
+        <div className="ems-header-info">
+          <div className="ems-avatar">
+            <Sparkles size={18} />
           </div>
-          <div className="ems-header-text">
-            <h3>{botConfig.title || "EMS Assistant"}</h3>
-            <p>{botConfig.subtitle || "Event Assistant"}</p>
+          <div>
+            <div className="ems-title">{botConfig.title || "The Equinox 2.0 Assistant"}</div>
+            <div className="ems-subtitle">{botConfig.subtitle || "MLRIT CIE E-Summit"}</div>
           </div>
         </div>
 
-        <div className="ems-header-actions">
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <button
-            className="ems-header-btn"
+            className="ems-close-btn"
             title="Reset conversation"
             onClick={handleResetConversation}
           >
-            <RotateCcw size={16} />
+            <RotateCcw size={15} />
           </button>
-          <button className="ems-header-btn" title="Close" onClick={onClose}>
+          <button className="ems-close-btn" title="Close" onClick={onClose}>
             <X size={18} />
           </button>
         </div>
@@ -156,30 +174,43 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
 
       {/* Active Page Context Indicator */}
       {pageContext.eventId && (
-        <div className="ems-context-bar">
-          <span>📍</span>
+        <div className="ems-context-banner">
+          <span className="ems-context-badge">Context</span>
           <span>Viewing: <strong>{pageContext.eventName || pageContext.eventId}</strong></span>
         </div>
       )}
 
       {/* Messages Scroll Area */}
-      <div className="ems-messages-body">
+      <div className="ems-messages">
         {messages.length === 0 ? (
-          <div className="ems-empty-state">
-            <div className="ems-empty-icon">
-              <HelpCircle size={28} />
+          <div style={{ padding: "16px 8px", textAlign: "center" }}>
+            <div style={{
+              width: "48px",
+              height: "48px",
+              borderRadius: "14px",
+              background: "rgba(79, 70, 229, 0.15)",
+              color: "#818cf8",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 12px auto"
+            }}>
+              <HelpCircle size={26} />
             </div>
-            <p className="ems-empty-greeting">{botConfig.greeting}</p>
+            <p style={{ fontSize: "13px", color: "#cbd5e1", lineHeight: "1.5", marginBottom: "16px" }}>
+              {botConfig.greeting}
+            </p>
 
-            <div className="ems-suggestions-grid">
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", textAlign: "left" }}>
               {botConfig.suggested_prompts.map((prompt, idx) => (
                 <button
                   key={idx}
                   className="ems-suggestion-chip"
                   onClick={() => handleSend(prompt)}
                   disabled={isCooldown}
+                  style={{ textAlign: "left", width: "100%", padding: "8px 12px" }}
                 >
-                  ⚡ {prompt}
+                  ✨ {prompt}
                 </button>
               ))}
             </div>
@@ -190,11 +221,13 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
 
         {/* Typing Loading Indicator */}
         {isLoading && (
-          <div className="ems-message-row assistant">
-            <div className="ems-bubble assistant ems-typing">
-              <div className="ems-dot"></div>
-              <div className="ems-dot"></div>
-              <div className="ems-dot"></div>
+          <div className="ems-message ems-message-assistant">
+            <div className="ems-bubble">
+              <div className="ems-loading-dots">
+                <div className="ems-dot"></div>
+                <div className="ems-dot"></div>
+                <div className="ems-dot"></div>
+              </div>
             </div>
           </div>
         )}
@@ -202,23 +235,32 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Footer / Input */}
-      <div className="ems-footer">
+      {/* Footer / Input Area */}
+      <div style={{ background: "#0f172a", borderTop: "1px solid #334155" }}>
         {isCooldown && (
-          <div className="ems-cooldown-bar">
-            <Clock size={14} />
-            <span>Query rejected. Chat paused: {cooldownRemaining}s</span>
+          <div style={{
+            background: "rgba(239, 68, 68, 0.15)",
+            borderBottom: "1px solid rgba(239, 68, 68, 0.3)",
+            padding: "6px 14px",
+            fontSize: "11.5px",
+            color: "#fca5a5",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px"
+          }}>
+            <Clock size={13} />
+            <span>Chat paused during cooldown: {cooldownRemaining}s</span>
           </div>
         )}
 
-        <div className={`ems-input-box ${isCooldown ? "disabled" : ""}`}>
+        <div className="ems-input-area">
           <textarea
             ref={textareaRef}
             className="ems-textarea"
             placeholder={
               isCooldown
                 ? "Chat paused during cooldown..."
-                : botConfig.placeholder || "Ask about events, venues, rules..."
+                : botConfig.placeholder || "Ask about Equinox events, venue, sponsorship..."
             }
             rows={1}
             value={inputVal}

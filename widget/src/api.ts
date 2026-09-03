@@ -1,20 +1,22 @@
-import { BotConfig, ChatMessage, ChatResponse, PageContext } from './types';
+import { BotConfig, MessageItem, ChatResponse, PageContext } from './types';
 
 export class ChatApiClient {
   private baseUrl: string;
+  private botId: string;
 
-  constructor(baseUrl: string) {
+  constructor(baseUrl: string, botId: string = 'ems') {
     this.baseUrl = baseUrl.replace(/\/+$/, '');
+    this.botId = botId;
   }
 
-  async fetchConfig(botId: string): Promise<BotConfig> {
+  async fetchBotConfig(): Promise<BotConfig> {
     try {
-      const res = await fetch(`${this.baseUrl}/api/config/${botId}`);
+      const res = await fetch(`${this.baseUrl}/api/config/${this.botId}`);
       if (!res.ok) throw new Error(`HTTP error ${res.status}`);
       return await res.json();
     } catch {
       return {
-        bot_id: botId,
+        bot_id: this.botId,
         name: 'The Equinox 2.0 Assistant',
         title: 'The Equinox 2.0 Assistant',
         subtitle: 'MLRIT CIE E-Summit',
@@ -36,18 +38,19 @@ export class ChatApiClient {
   }
 
   async sendMessage(
-    botId: string,
     message: string,
     conversationId?: string,
-    pageContext?: PageContext | null,
-    history?: ChatMessage[]
+    history?: MessageItem[],
+    pageContext?: PageContext | null
   ): Promise<ChatResponse> {
     const payload = {
-      bot_id: botId,
+      bot_id: this.botId,
       message,
       conversation_id: conversationId,
       page_context: pageContext || undefined,
-      conversation_history: history || undefined,
+      conversation_history: history
+        ? history.map((m) => ({ role: m.role, content: m.content }))
+        : undefined,
     };
 
     const res = await fetch(`${this.baseUrl}/api/chat`, {
