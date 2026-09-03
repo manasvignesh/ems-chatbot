@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HackVerse 2026 - MLRIT EMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .logo-badge {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+    .logo-text h1 { font-size: 18px; font-weight: 800; }
+    .back-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 32px auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+    .event-header {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .category-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: #eef2ff;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .event-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item h5 {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .meta-item p {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .content-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .content-box h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+    .content-box p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+    .content-box ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+    .content-box li {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/demo/index.html" class="logo">
+        <div class="logo-badge">CIE</div>
+        <div class="logo-text">
+          <h1>EMS Portal</h1>
+        </div>
+      </a>
+      <a href="/demo/index.html" class="back-link">← Back to All Events</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="event-header">
+      <span class="category-badge">Hackathon</span>
+      <h1 class="event-title">HackVerse 2026</h1>
+      <p style="font-size: 16px; color: var(--text-muted);">
+        24-Hour National Hackathon on AI, Healthcare & Sustainable Tech
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <h5>Date & Time</h5>
+          <p>Sep 12-13, 2026 (09:00 AM)</p>
+        </div>
+        <div class="meta-item">
+          <h5>Venue</h5>
+          <p>CIE Block Labs (3rd Floor)</p>
+        </div>
+        <div class="meta-item">
+          <h5>Registration Cutoff</h5>
+          <p>Sep 08, 2026 (11:59 PM)</p>
+        </div>
+        <div class="meta-item">
+          <h5>Team Size</h5>
+          <p>2 - 4 Members</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h3>About the Hackathon</h3>
+      <p>
+        HackVerse 2026 brings together over 300 passionate student developers, designers, and innovators across India. 
+        Over 24 continuous hours, teams will build cutting-edge prototypes tackling challenges in Healthcare, Autonomous AI, and Sustainable Energy.
+      </p>
+      <p>
+        Supported by MLRIT Centre for Innovation and Entrepreneurship (CIE), winning teams will receive incubation grants, cloud credits, and direct mentor support.
+      </p>
+    </div>
+
+    <div class="content-box">
+      <h3>Official Rules & Guidelines</h3>
+      <ul>
+        <li>All source code, designs, and hardware prototypes must be created during the official 24-hour sprint.</li>
+        <li>Pre-existing commercial products or plagiarized code will result in immediate disqualification.</li>
+        <li>Open-source libraries, APIs, and frameworks are allowed with clear documentation.</li>
+        <li>Every team must submit a public GitHub repository and present a 3-minute live prototype demo.</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h3>Prizes & Rewards</h3>
+      <ul>
+        <li><strong>1st Prize:</strong> ₹25,000 Cash + Direct CIE Incubation Grant</li>
+        <li><strong>2nd Prize:</strong> ₹15,000 Cash + Cloud Credits</li>
+        <li><strong>3rd Prize:</strong> ₹10,000 Cash + Prototyping Mentorship</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 MLRIT Centre for Innovation & Entrepreneurship. All rights reserved.</p>
+  </footer>
+
+  <!-- Embed EMS Assistant Standalone Widget -->
+  <script
+    src="/widget/widget.js"
+    data-api-url="http://localhost:8000"
+    data-bot-id="ems"
+    data-auto-init="true"
+  ></script>
+
+  <script>
+    // Set dynamic page context for the AI Assistant
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.EMSAssistant) {
+        window.EMSAssistant.setContext({
+          pageType: "event",
+          eventId: "hackverse-2026",
+          eventName: "HackVerse 2026",
+          pathname: window.location.pathname
+        });
+        console.log("[Demo] Page context set for HackVerse 2026");
+      }
+    });
+  </script>
+</body>
+</html>

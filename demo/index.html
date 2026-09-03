@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLRIT CIE - Event Management System (EMS)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .logo-badge {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+    .logo-text h1 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .logo-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .hero {
+      max-width: 1200px;
+      margin: 40px auto 20px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -1px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .events-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08);
+      border-color: #cbd5e1;
+    }
+    .category-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: #eef2ff;
+      color: var(--primary);
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .event-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+    .event-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .event-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .view-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .view-btn:hover {
+      background: var(--primary-hover);
+    }
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/demo/index.html" class="logo">
+        <div class="logo-badge">CIE</div>
+        <div class="logo-text">
+          <h1>EMS Portal</h1>
+          <p>MLR Institute of Technology</p>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h2>Discover MLRIT College Events</h2>
+      <p>Explore hackathons, technical workshops, seminars, and competitions hosted by student chapters and CIE.</p>
+    </div>
+
+    <section class="events-section">
+      <h3 class="section-title">Upcoming Events</h3>
+      <div class="events-grid">
+        
+        <!-- Event 1: HackVerse -->
+        <div class="event-card">
+          <div>
+            <span class="category-badge">Hackathon</span>
+            <h4 class="event-title">HackVerse 2026</h4>
+            <p class="event-desc">MLRIT's premier 24-hour national hackathon focused on AI, Healthcare, and IoT solutions with ₹50,000 cash prizes.</p>
+            <div class="event-meta">
+              <div>📅 <strong>Date:</strong> Sep 12-13, 2026</div>
+              <div>📍 <strong>Venue:</strong> CIE Block, 3rd Floor Labs</div>
+              <div>👥 <strong>Team:</strong> 2 to 4 members</div>
+            </div>
+          </div>
+          <a href="/demo/event.html" class="view-btn">View Event Details →</a>
+        </div>
+
+        <!-- Event 2: IoT Workshop -->
+        <div class="event-card">
+          <div>
+            <span class="category-badge">Workshop</span>
+            <h4 class="event-title">Hands-on IoT & Embedded Systems</h4>
+            <p class="event-desc">Practical masterclass on ESP32 programming, sensor telemetry, and cloud MQTT telemetry integration.</p>
+            <div class="event-meta">
+              <div>📅 <strong>Date:</strong> Sep 5, 2026 (10:00 AM)</div>
+              <div>📍 <strong>Venue:</strong> Embedded Systems Lab (Room 214)</div>
+              <div>👥 <strong>Eligibility:</strong> Open to all years</div>
+            </div>
+          </div>
+          <a href="/demo/event.html?id=iot-robotics-workshop" class="view-btn">View Event Details →</a>
+        </div>
+
+        <!-- Event 3: AI Agents Bootcamp -->
+        <div class="event-card">
+          <div>
+            <span class="category-badge">Seminar</span>
+            <h4 class="event-title">Autonomous AI Agents & GenAI Bootcamp</h4>
+            <p class="event-desc">Deep dive into building multi-agent systems, RAG architectures, and autonomous workflows with LLMs.</p>
+            <div class="event-meta">
+              <div>📅 <strong>Date:</strong> Sep 9, 2026 (02:00 PM)</div>
+              <div>📍 <strong>Venue:</strong> Main Auditorium, Central Block</div>
+              <div>👥 <strong>Organized by:</strong> AI Mavericks</div>
+            </div>
+          </div>
+          <a href="/demo/event.html?id=ai-agents-bootcamp" class="view-btn">View Event Details →</a>
+        </div>
+
+        <!-- Event 4: CyberShield CTF -->
+        <div class="event-card">
+          <div>
+            <span class="category-badge">Competition</span>
+            <h4 class="event-title">CyberShield Capture The Flag (CTF)</h4>
+            <p class="event-desc">Jeopardy-style cybersecurity challenge covering web exploitation, cryptography, and forensics.</p>
+            <div class="event-meta">
+              <div>📅 <strong>Date:</strong> Sep 18, 2026 (01:00 PM)</div>
+              <div>📍 <strong>Venue:</strong> Cyber Security Lab 4</div>
+              <div>👥 <strong>Prizes:</strong> ₹27,000 Prize Pool</div>
+            </div>
+          </div>
+          <a href="/demo/event.html?id=cybershield-ctf" class="view-btn">View Event Details →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 MLRIT Centre for Innovation & Entrepreneurship. All rights reserved.</p>
+  </footer>
+
+  <!-- Embed EMS Assistant Standalone Chat Widget -->
+  <script
+    src="/widget/widget.js"
+    data-api-url="http://localhost:8000"
+    data-bot-id="ems"
+    data-auto-init="true"
+  ></script>
+</body>
+</html>
