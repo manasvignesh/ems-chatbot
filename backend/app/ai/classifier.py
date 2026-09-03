@@ -32,6 +32,8 @@ EXPLICIT_EQUINOX_TERMS = [
 
 # Confidently out-of-scope patterns (Strictly unrelated external domains)
 OUT_OF_SCOPE_PATTERNS = [
+    # Abuse / Profanity / Harassment / Insults
+    r"(?i)\b(fuck(\s*(you+|u+|off|this))?|f+u+c+k+|bitch|bastard|asshole|idiot|moron|dumbass|shut\s*up|stfu|dick|piss\s*off)\b",
     # Real-world sports scores & cricket news (Intent-specific, distinct from simulated IPL auction)
     r"(?i)\b(who won (yesterday|the match|ipl)|match score|cricket score|live score|ipl score|points table|yesterday'?s? match|india vs australia score|cricket match score|fifa|football score|world cup|premier league|champions league|nba score)\b",
     # Crypto / stock market
@@ -78,13 +80,13 @@ class ScopeClassifier:
                 reason="Prompt injection or system extraction attempt."
             )
 
-        # Step 2: Check Clear Out-of-Scope Patterns FIRST
+        # Step 2: Check Clear Out-of-Scope Patterns FIRST (Abuse, Weather, Cricket Scores, Crypto, etc.)
         for pattern in COMPILED_OUT_OF_SCOPE:
             if pattern.search(lower_q):
                 return ScopeClassificationResult(
                     classification="CLEARLY_OUT_OF_SCOPE",
-                    confidence=0.96,
-                    reason="Query clearly matches unrelated general/entertainment/sports domains."
+                    confidence=0.98,
+                    reason="Query clearly matches unrelated general/entertainment/abusive domains."
                 )
 
         # Step 3: Explicit Equinox, Sub-Event, Activity & Shorthand Identifiers (IN_SCOPE)
